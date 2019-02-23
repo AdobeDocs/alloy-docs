@@ -1,1 +1,2 @@
-# AEP-WEB-SDK-DOCS
+# AEP Web SDK
+
