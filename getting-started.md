@@ -16,15 +16,8 @@ The Experience SDK for Web has two parts to make it work. First is the on page c
       a.__adobeNS.push(b);a[b]=function(){a[b].q.push(arguments)};a[b].q=[]}})
       (window,'adbe');
 </script>
+<script src="alloy.js" async></script>
 ```
-
-The second is the include of the `atag.js` on the page
-
-```markup
-<script src="atag.js" async></script>
-```
-
-Both of these should be included in the head of your HTML. 
 
 ### Making Calls to the Experience SDK for Web
 
@@ -32,19 +25,21 @@ Calls are then made to the SDK using the following syntax.
 
 ```javascript
 <script>
-    adbe('command',parameters_obj)
+    adbe('command', options)
 </script>
 ```
 
 The `command` tells the SDK what to do. Here is a list of the possible commands. 
 
 * `configure` - Sets configuration parameters for the SDK
-* `viewStart` - Indicates that a new view has started and the SDK can reder content and attach link handlers
-* `collect` - There is additional data that you would like to send. This also will fetch personalization content for caching
+* `viewStart` - Indicates that a new view has started and the SDK can render content and attach link handlers
+* `event` - Allows you to send additional data. If you have a correlation ID the events will be stitched together. This also will fetch personalization content for caching
+
+`options` are the parameters and data you want to pass into a command \(see docs for each command\). 
 
 ### Configuring the Experience SDK for Web
 
-Configuration for the SDK is done with the `configure` command. This ALWAYS be the first command called. 
+Configuration for the SDK is done with the `configure` command. This should ALWAYS be the first command called. 
 
 ```javascript
 adbe("configure", {
@@ -54,27 +49,28 @@ adbe("configure", {
 
 The options are as follows. 
 
-* `propertyId` - The property id links the SDK to the appropriate accounts and configuration. 
+* `propertyId` - The property id links the SDK to the appropriate accounts and configuration.
+* `debug` - True or False. Turns on debugging messages in the javascript console.  
 
 ### Starting a View
 
 A new view can be a few different things in different contexts. 
 
-* In a regular web page it means the webpage has started loading and should be called at the top of the page
-* In SPA it means that the user has moved into a new view where most of the page has changed. This is typically when you load a new route. It should be called when you render new content. 
+* In a regular webpage, it means the webpage has started loading and should be called at the top of the page
+* In a single page application \(SPA\) it means that the user has moved into a new view where most of the page has changed. This is typically when you load a new route. It should be called when you render new content. 
 
 A new view is the primary mechanism for sending data to the Adobe Experience Cloud and requesting content from the Adobe Experience Cloud. Here is how you start a view. 
 
 ```javascript
 adbe("viewStart",{
+    "type":"::page:load",
     "data":{
-        "event":"productPageView"
         "key":"value"
     }
 })
 ```
 
-Any data that you would like to be part of your analytics, personalization, audiences or destinations should be sent using the data key. 
+Any data that you would like to be part of your analytics, personalization, audiences or destinations should be sent using the `data` key. 
 
 The only key that is required is the `event` key, it will accept any string as a value
 
@@ -86,10 +82,10 @@ The `data` key will accept any XDM keys and any arbitrary key value pairs that y
 
 ### Non View Events
 
-Many times your events don't correspond to a view change. In these cases you will want to use the `collect` call. The collect call has the same signature as the `viewStart` call but won't attach link handlers or allow personalization experiences to be updated automatically. 
+Many times your events don't correspond to a view change. In these cases you will want to use the `event` call. The collect call has the same signature as the `viewStart` call but won't attach link handlers or allow personalization experiences to be updated automatically. 
 
 ```javascript
-adobe('collect',{
+adobe('event',{
     "data":{
         "event":"buttonClick"
         "key":"value"
@@ -99,14 +95,14 @@ adobe('collect',{
 
 ### Adding Additional Data
 
-Sometimes not all data is available at the top of the page. The Experience SDK for Web and the Experience Edge can handle this by calling `collect` and using `correlationId` 
+Sometimes not all data is available at the top of the page. The Experience SDK for Web and the Experience Edge can handle this by calling `event` and using `correlationId`.
 
-
+\`\`
 
 ```javascript
-adobe('viewStart',{
+adbe('viewStart',{
+    "type":"::page:load"
     "data":{
-        "event":"loadSite"
         "key":"value"
     },
     "correlationId":123456
@@ -114,7 +110,8 @@ adobe('viewStart',{
 
 //Page loads or time goes by
 
-adobe('collect',{
+adobe('event',{
+    "type":"::button:click",
     "data":{
         "key2":"value2"
     },
@@ -122,13 +119,24 @@ adobe('collect',{
 })
 ```
 
-This append the data together even if the data has already been sent to the server. 
+This appends the data together even if the data has already been sent to the server. 
 
 #### Data collisions
 
-If `event` is sent in both calls the first one will be used
+If `type` is sent in both calls the first one will be used.
 
 ---- Need Details on Merging ----
+
+### Debugging
+
+The `configure` allows you to enable debugging. If you set the `debug` option to true then it will print out messages to the console that are helpful in understanding exactly what the alloy library is doing. 
+
+```javascript
+adbe("configure", {
+    propertyId: "ebebf826-a01f-4458-8cec-ef61de241c93",
+    debug:true
+})
+```
 
 ## Customization for Specific Use-Cases
 
@@ -138,19 +146,19 @@ In app browsers will be have exactly the same way except you will want to make s
 
 ### Retrieving Personalization Details for Custom Render
 
-If you would like to handle rendering of personalization content your self you can register a callback to the `viewState` or `collect` calls. 
+If you would like to handle rendering of personalization content your self you can register a callback to the `viewState` or `event` calls. 
 
 ------ What is the parameter for the callback? ------
 
 ### Interacting with Multiple Properties on the Same Page
 
-There are certain cases where you might want to interact with two different properties on the same page these include. 
+There are certain cases where you might want to interact with two different properties on the same page. These include. 
 
 * Companies that have been acquired and are working on integrating their websites together 
 * Data sharing relationships between two companies
 * Customers who are testing new Adobe Solutions and don't want to disrupt their existing implementation
 
-To do this you will include two versions of the initialization code
+To do this, you will include two versions of the initialization code.
 
 ```javascript
 <script>
@@ -161,6 +169,7 @@ To do this you will include two versions of the initialization code
       a.__adobeNS.push(b);a[b]=function(){a[b].q.push(arguments)};a[b].q=[]}})
       (window,'example');
 </script>
+<script src="alloy.js" async></script>
 ```
 
 Make sure you change the name in the `(window, 'adobe')` to be what you want the new object name to be. The above script will let you make calls to 
@@ -185,7 +194,20 @@ example("viewStart",{
 })
 ```
 
-This lets you have two different configurations on the same page which allows you to access different properties. 
+This, lets you have two different configurations on the same page which allows you to access different properties. 
 
 When doing this you will need to ensure that `configure` gets called for both objects before other calls are made. 
+
+### Loading the Javascript File Syncrhonously
+
+While all of our use cases work asynchronously, sometimes you might want to load the javascript file synchronously. The only thing you have to keep in mind is the page code must be before the file include.
+
+```javascript
+<script>
+      (function(a,b){if(!a[b]){a.__adobeNS=a.__adobeNS||[];
+      a.__adobeNS.push(b);a[b]=function(){a[b].q.push(arguments)};a[b].q=[]}})
+      (window,'adbe');
+</script>
+<script src="alloy.js" async></script>
+```
 
