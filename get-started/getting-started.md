@@ -1,213 +1,285 @@
 ---
-description: Learn how to implement Adobe Products with the Experience SDK for Web.
+description: Learn how to implement Adobe Products with the Adobe Experience Platform SDK for Web.
 ---
 
 # Getting Started \(without Launch\)
 
 ## Basic Concepts
 
-### Installing the Experience SDK for Web
+### Installation
 
-The Experience SDK for Web has two parts to make it work. First is the on page code which is what allows the library to be full asynchronous \(to increase render performance\). 
+The first step in implemented the Adobe Experience Platform SDK is to copy and paste the following "base code" as high as possible in the `<head>` tag of your HTML: 
 
-```markup
+```html
 <script>
-      (function(a,b){if(!a[b]){a.__adobeNS=a.__adobeNS||[];
-      a.__adobeNS.push(b);a[b]=function(){a[b].q.push(arguments)};a[b].q=[]}})
-      (window,'adbe');
+  !function(n,o){o.forEach(function(o){n[o]||((n.__alloyNS=n.__alloyNS||
+  []).push(o),n[o]=function(){var u=arguments;return new Promise(
+  function(i,l){n[o].q.push([i,l,u])})},n[o].q=[])})}
+  (window,["alloy"]);
 </script>
 <script src="alloy.js" async></script>
 ```
 
-### Making Calls to the Experience SDK for Web
+The base code, by default, creates a global function named `alloy`. You will use this function to interact with the SDK. If you would like to name the global function something else, you may change the `alloy` name as follows:
 
-Calls are then made to the SDK using the following syntax. 
-
-```javascript
+```html
 <script>
-    adbe('command', options)
+  !function(n,o){o.forEach(function(o){n[o]||((n.__alloyNS=n.__alloyNS||
+  []).push(o),n[o]=function(){var u=arguments;return new Promise(
+  function(i,l){n[o].q.push([i,l,u])})},n[o].q=[])})}
+  (window,["mycustomname"]);
 </script>
+<script src="alloy.js" async></script>
 ```
 
-The `command` tells the SDK what to do. Here is a list of the possible commands. 
+With this change made, the global function would be named `mycustomname` instead of `alloy`.
 
-* `configure` - Sets configuration parameters for the SDK
-* `viewStart` - Indicates that a new view has started and the SDK can render content and attach link handlers
-* `event` - Allows you to send additional data. If you have a correlation ID the events will be stitched together. This also will fetch personalization content for caching
+This base code, in addition to creating a global function, also loads additional code contained within an external file (`alloy.js`) hosted on a server. By default, this code is loaded asynchronously to allow your webpage to be as performant as possible. This is the recommended implementation.
 
-`options` are the parameters and data you want to pass into a command \(see docs for each command\). 
+### Executing Commands
 
-### Configuring the Experience SDK for Web
+Once the base code has been implemented on your webpage, you may begin executing commands with the SDK. You do not need to wait for the external file (`alloy.js`) to be loaded from the server before executing commands. If the SDK has not finished loading, commands will be queued and processed by the SDK as soon as possible.
 
-Configuration for the SDK is done with the `configure` command. This should ALWAYS be the first command called. 
+Commands are executed using the following syntax. 
 
 ```javascript
-adbe("configure", {
-    propertyId: "ebebf826-a01f-4458-8cec-ef61de241c93"
-})
+alloy("commandName", options);
+```
+
+The `commandName` tells the SDK what to do, while `options` are the parameters and data you would like to pass into a command. Because the available options depend on the command, please consult the documentation for each command for more details.
+
+Each time a command is executed, a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) will be returned. The promise represents the eventual completion of the command. In the example below, we can use `then` and `catch` methods to determine when the command has succeeded or failed.
+
+```javascript
+alloy("commandName", options)
+  .then(function(value) {
+    // The command succeeded.
+    // "value" will be whatever the command returned
+  })
+  .catch(function(error) {
+    // The command failed.
+    // "error" will be an error object with additional information
+  })
+```
+
+### Configuration
+
+Configuration for the SDK is done with the `configure` command. This should _always_ be the first command called. 
+
+```javascript
+alloy("configure", {
+  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
+});
 ```
 
 The options are as follows. 
 
-* `propertyId` - The property id links the SDK to the appropriate accounts and configuration.
-* `debug` - True or False. Turns on debugging messages in the javascript console.  
+* `propertyID` - (required) The property ID links the SDK to the appropriate accounts and configuration.
+* `debug` - (optional) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.  
 
 ### Starting a View
 
-A new view can be a few different things in different contexts. 
+When a view has started, you will need to notify the SDK by executing the `viewStart` command. The definition of a view can depend on the context. 
 
-* In a regular webpage, it means the webpage has started loading and should be called at the top of the page
-* In a single page application \(SPA\) it means that the user has moved into a new view where most of the page has changed. This is typically when you load a new route. It should be called when you render new content. 
+* In a regular website, each webpage would typically be considered a unique view. In this case, `viewStart` should be executed as soon as possible at the top of the page.
 
-A new view is the primary mechanism for sending data to the Adobe Experience Cloud and requesting content from the Adobe Experience Cloud. Here is how you start a view. 
+* In a single page application \(SPA\), a view is less defined. It typically means that the user has navigated within the application and most of the content has changed. For those familiar with the technical foundations of single page applications, this is typically when the application loads a new route. Whenever a user moves to a new view, however you choose to define a "view", the `viewStart` command should be executed. 
 
-```javascript
-adbe("viewStart",{
-    "type":"::page:load",
-    "data":{
-        "key":"value"
-    }
-})
-```
-
-Any data that you would like to be part of your analytics, personalization, audiences or destinations should be sent using the `data` key. 
-
-The only key that is required is the `event` key, it will accept any string as a value
-
-{% hint style="info" %}
-event is more like an event type and is used to group similar events together so you can apply processing to different events
-{% endhint %}
-
-The `data` key will accept any XDM keys and any arbitrary key value pairs that you would like to send and can be used in any of the use cases \(analytics personalization, audiences, destinations, etc\). 
-
-### Non View Events
-
-Many times your events don't correspond to a view change. In these cases you will want to use the `event` call. The collect call has the same signature as the `viewStart` call but won't attach link handlers or allow personalization experiences to be updated automatically. 
+The `viewStart` command is the primary mechanism for sending data to the Adobe Experience Cloud and requesting content from the Adobe Experience Cloud. Here is how you start a view: 
 
 ```javascript
-adobe('event',{
-    "data":{
-        "event":"buttonClick"
-        "key":"value"
-    },
-})
+alloy("viewStart", {
+  "data": {
+    "key": "value"
+  }
+});
 ```
 
-### Adding Additional Data
+Any data you would like to be part of your analytics, personalization, audiences, or destinations should be sent using the `data` key. 
 
-Sometimes not all data is available at the top of the page. The Experience SDK for Web and the Experience Edge can handle this by calling `event` and using `correlationId`.
+The `data` key will accept any XDM keys and any arbitrary key value pairs you would like to send and can be used in any of the use cases \(analytics personalization, audiences, destinations, etc\).
 
-\`\`
+Once data is sent, the server will respond with personalized content, among other things. This personalized content will be automatically rendered into your view. Link handlers will also be automatically attached to the new view's content. 
+
+### Other Events
+
+Many times, events don't correspond to a view change. In these cases, you will want to use the `event` command. The `event` command supports the same options as the `viewStart` command, but won't automatically render personalization content or attach link handlers. 
 
 ```javascript
-adbe('viewStart',{
-    "type":"::page:load"
-    "data":{
-        "key":"value"
-    },
-    "correlationId":123456
-})
-
-//Page loads or time goes by
-
-adobe('event',{
-    "type":"::button:click",
-    "data":{
-        "key2":"value2"
-    },
-    "correlationId":123456
-})
+alloy("event", {
+  "data": {
+    "key":"value"
+  },
+});
 ```
 
-This appends the data together even if the data has already been sent to the server. 
+### Augmenting Data
 
-#### Data collisions
+Sometimes, not all data is available when a view starts or an event occurs. In such cases, you may augment data to a prior `viewStart` or `event` data by passing `correlationID` as an option to `viewStart` or `event` commands.
 
-If `type` is sent in both calls the first one will be used.
+```javascript
+alloy("viewStart", {
+  "data": {
+    "key": "value"
+  },
+  "correlationID": 123456
+});
 
----- Need Details on Merging ----
+// Time passes and more data becomes available
+
+alloy("event", {
+  "data": {
+    "key2": "value2"
+  },
+  "correlationID": 123456
+});
+```
+
+By passing the same correlation ID to both `viewStart` and `event` commands in this example, the data in the `event` command will be appended to data previously sent on the `viewStart` command.
+
+If you are sending data about a particular event to third-party providers, you may also wish to include the same correlation ID with that data as well. Later, if you choose to import the third-party data into the Adobe Experience Platform, the correlation ID will be used to stitch together all data that was collected as a result of the single event that occurred on your webpage.
+
+If you would like the SDK to generate a unique correlation ID on your behalf, you may use the `createCorrelationID` command to do so. As with all commands, a promise will be returned which will later be resolved with the ID itself. For your convenience, you may pass the promise as the `correlationID` option value on other commands and the SDK will handle it appropriately. This is demonstrated as follows: 
+
+```javascript
+var correlationIDPromise = alloy("createCorrelationID");
+
+alloy("viewStart", {
+  "data": {
+    "key": "value"
+  },
+  "correlationID": correlationIDPromise
+});
+
+// Time passes and more data becomes available
+
+alloy("event", {
+  "data": {
+    "key2": "value2"
+  },
+  "correlationID": correlationIDPromise
+});
+```
+
+If you'd like to access the correlation ID value (this may be necessary to send the ID to third-party providers), you can explicitly wait for the promise to be resolved:
+
+```javascript 
+var correlationIDPromise = alloy("createCorrelationID");
+
+correlationIDPromise.then(function(correlationID) {
+  console.log(correlationID);
+});
+```
 
 ### Debugging
 
-The `configure` allows you to enable debugging. If you set the `debug` option to true then it will print out messages to the console that are helpful in understanding exactly what the alloy library is doing. 
+The `configure` command allows you to enable debugging. If you set the `debug` option to `true`, the SDK will log messages to the console that are helpful in understanding exactly what the SDK is doing. 
 
 ```javascript
-adbe("configure", {
-    propertyId: "ebebf826-a01f-4458-8cec-ef61de241c93",
-    debug:true
+alloy("configure", {
+  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "debug": true
+});
+```
+
+For your convenience, you can also toggle debugging through a separate `debug` command as follows:
+
+```javascript
+alloy("debug", {
+  "enabled": true
 })
 ```
 
-## Customization for Specific Use-Cases
+Note that you may execute this `debug` command within your browser's JavaScript console to toggle debugging at any time. This can be particularly useful when it's difficult to change code on your webpage or you don't want debugging messages to be produced for all users of your website.
+
+When debugging is enabled, it will remain enabled until you disable it again. You can disable debugging through the same mechanisms just outlined, but by using a value of `false` instead of `true`. 
+
+## Customization for Specific Use Cases
 
 ### In-App Browsers
 
-In app browsers will be have exactly the same way except you will want to make sure the Visitor ID gets passed across in the URL. This is outlined in the documents for the [Experience SDK for Mobile](https://marketing.adobe.com/resources/help/en_US/mobile/ios/hybrid_app.html). 
+Within browsers embedded inside mobile applications, the SDK will behave exactly as it would within a regular browser; however, you should make sure the Visitor ID gets passed from the mobile application into the website through the URL. This process is outlined in the documentation for the [Experience SDK for Mobile](https://marketing.adobe.com/resources/help/en_US/mobile/ios/hybrid_app.html). 
 
-### Retrieving Personalization Details for Custom Render
+### Retrieving Personalization Details for Custom Rendering
 
-If you would like to handle rendering of personalization content your self you can register a callback to the `viewState` or `event` calls. 
+If you would like to handle rendering of personalization content yourself, you can wait for the promise to be resolved after calling `viewStart` or `event` as follows:
 
------- What is the parameter for the callback? ------
+```javascript
+alloy("viewStart", {
+  data: {
+    "key": "value"
+  }
+}).then(function(value) {
+  // More details to come about what value holds and how to use
+  // it to render personalization content.
+});
+``` 
 
 ### Interacting with Multiple Properties on the Same Page
 
-There are certain cases where you might want to interact with two different properties on the same page. These include. 
+There are certain cases where you might want to interact with two different properties on the same page. These include: 
 
 * Companies that have been acquired and are working on integrating their websites together 
-* Data sharing relationships between two companies
+* Data-sharing relationships between multiple companies
 * Customers who are testing new Adobe Solutions and don't want to disrupt their existing implementation
 
-To do this, you will include two versions of the initialization code.
+To do this, the SDK allows you to create a separate instance for each property by adding another name to the array in the base code. In the following example, we've provided two names, `mycustomname1` and `mycustomname2`.
 
-```javascript
+```html
 <script>
-      (function(a,b){if(!a[b]){a.__adobeNS=a.__adobeNS||[];
-      a.__adobeNS.push(b);a[b]=function(){a[b].q.push(arguments)};a[b].q=[]}})
-      (window,'adbe');
-      (function(a,b){if(!a[b]){a.__adobeNS=a.__adobeNS||[];
-      a.__adobeNS.push(b);a[b]=function(){a[b].q.push(arguments)};a[b].q=[]}})
-      (window,'example');
+  !function(n,o){o.forEach(function(o){n[o]||((n.__alloyNS=n.__alloyNS||
+  []).push(o),n[o]=function(){var u=arguments;return new Promise(
+  function(i,l){n[o].q.push([i,l,u])})},n[o].q=[])})}
+  (window,["mycustomname1", "mycustomname2"]);
 </script>
 <script src="alloy.js" async></script>
 ```
 
-Make sure you change the name in the `(window, 'adobe')` to be what you want the new object name to be. The above script will let you make calls to 
+As a result, the script will create two instances of the SDK. The global function for interacting with the first instance will be named `mycustomname1` and the global function for interacting with the second instance will be named `mycustomname2`.
+
+By creating two separate instances, each can be configured for a different property. Any communication or data persistence that occurs due to interacting with `mycustomname1` will be kept isolated from `mycustomname2` and vice-versa.  
+
+Following the above example, you can now execute commands using each of the instances as follows: 
 
 ```javascript
-adbe("viewStart",{
-    "data":{
-        "event":"productPageView"
-        "key":"value"
-    }
-})
+mycustomname1("configure", {
+  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
+});
+
+mycustomname1("viewStart", {
+  "data": {
+    "key": "value"
+  }
+});
+
+mycustomname2("configure", {
+  "propertyID": "f46e981f-fd03-4bdd-a9d9-73ce4447f870"
+});
+
+mycustomname2("viewStart", {
+  "data": {
+    "key": "value"
+  }
+});
 ```
 
-as well as 
+Be sure to execute the `configure` command for each instance before executing other commands on the same instance. 
 
-```javascript
-example("viewStart",{
-    "data":{
-        "event":"productPageView"
-        "key":"value"
-    }
-})
-```
+### Loading the JavaScript File Synchronously
 
-This, lets you have two different configurations on the same page which allows you to access different properties. 
+As explained previously, the base code you have copied and pasted into your website's HTML will load an external file with additional code. This additional code contains the core functionality of the SDK. Any command you attempt to execute while this file is loading will be queued and then processed once the file is loaded. This is the most performant method of installation. 
 
-When doing this you will need to ensure that `configure` gets called for both objects before other calls are made. 
+Under certain circumstances, however, you may wish to load the file synchronously (more details about these circumstances will be documented later). Doing so will block the rest of the HTML document from being parsed and rendered by the browser until the external file has been loaded and executed. This additional delay before displaying primary content to users is typically frowned upon, but may make sense depending on the circumstances.
 
-### Loading the Javascript File Syncrhonously
+To load the file synchronously instead of asynchronously, simply remove the `async` attribute from the second `script` tag as shown below:
 
-While all of our use cases work asynchronously, sometimes you might want to load the javascript file synchronously. The only thing you have to keep in mind is the page code must be before the file include.
-
-```javascript
+```html
 <script>
-      (function(a,b){if(!a[b]){a.__adobeNS=a.__adobeNS||[];
-      a.__adobeNS.push(b);a[b]=function(){a[b].q.push(arguments)};a[b].q=[]}})
-      (window,'adbe');
+  !function(n,o){o.forEach(function(o){n[o]||((n.__alloyNS=n.__alloyNS||
+  []).push(o),n[o]=function(){var u=arguments;return new Promise(
+  function(i,l){n[o].q.push([i,l,u])})},n[o].q=[])})}
+  (window,["alloy"]);
 </script>
-<script src="alloy.js" async></script>
+<script src="alloy.js"></script>
 ```
 
