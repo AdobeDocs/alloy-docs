@@ -265,7 +265,7 @@ mycustomname2("viewStart", {
 
 Be sure to execute the `configure` command for each instance before executing other commands on the same instance. 
 
-### Loading the Javascript File Synchronously
+### Loading the JavaScript File Synchronously
 
 As explained previously, the base code you have copied and pasted into your website's HTML will load an external file with additional code. This additional code contains the core functionality of the SDK. Any command you attempt to execute while this file is loading will be queued and then processed once the file is loaded. This is the most performant method of installation. 
 
