@@ -68,7 +68,8 @@ Configuration for the SDK is done with the `configure` command. This should _alw
 
 ```javascript
 alloy("configure", {
-  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
+  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "collectionUrl":"<insert-collection-domain-here>"
 });
 ```
 
@@ -179,6 +180,7 @@ The `configure` command allows you to enable debugging. If you set the `debug` o
 ```javascript
 alloy("configure", {
   "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "collectionUrl":"<insert-collection-domain-here>",
   "debug": true
 });
 ```
@@ -244,7 +246,8 @@ Following the above example, you can now execute commands using each of the inst
 
 ```javascript
 mycustomname1("configure", {
-  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
+  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "collectionUrl":"<insert-collection-domain-here>"
 });
 
 mycustomname1("viewStart", {
@@ -254,7 +257,8 @@ mycustomname1("viewStart", {
 });
 
 mycustomname2("configure", {
-  "propertyID": "f46e981f-fd03-4bdd-a9d9-73ce4447f870"
+  "propertyID": "f46e981f-fd03-4bdd-a9d9-73ce4447f870",
+  "collectionUrl":"<insert-collection-domain-here>"
 });
 
 mycustomname2("viewStart", {
