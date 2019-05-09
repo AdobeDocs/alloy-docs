@@ -75,6 +75,7 @@ alloy("configure", {
 The options are as follows. 
 
 * `propertyID` - (required) The property ID links the SDK to the appropriate accounts and configuration.
+* `collectionUrl` - (required) The url that will be used to interact with Adobe Services. 
 * `debug` - (optional) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.  
 
 ### Starting a View
