@@ -68,15 +68,14 @@ Configuration for the SDK is done with the `configure` command. This should _alw
 
 ```javascript
 alloy("configure", {
-  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "collectionUrl":"<insert-collection-domain-here>"
+  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
 });
 ```
 
 The options are as follows. 
 
 * `propertyID` - (required) The property ID links the SDK to the appropriate accounts and configuration.
-* `collectionUrl` - (required) The url that will be used to interact with Adobe Services. 
+* `collectionUrl` - (optional) The url that will be used to interact with Adobe Services. If you use a CNAME for collection, you will need to provide its URL here. 
 * `debug` - (optional) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.  
 
 ### Starting a View
@@ -117,7 +116,7 @@ alloy("event", {
 
 ### Augmenting Data
 
-Sometimes, not all data is available when a view starts or an event occurs. In such cases, you may augment data to a prior `viewStart` or `event` data by passing `correlationID` as an option to `viewStart` or `event` commands.
+Sometimes, not all data is available when a view starts or an event occurs. In such cases, you may augment data to prior `viewStart` or `event` data by passing `correlationID` as an option to `viewStart` or `event` commands.
 
 ```javascript
 alloy("viewStart", {
@@ -180,7 +179,6 @@ The `configure` command allows you to enable debugging. If you set the `debug` o
 ```javascript
 alloy("configure", {
   "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "collectionUrl":"<insert-collection-domain-here>",
   "debug": true
 });
 ```
@@ -246,8 +244,7 @@ Following the above example, you can now execute commands using each of the inst
 
 ```javascript
 mycustomname1("configure", {
-  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "collectionUrl":"<insert-collection-domain-here>"
+  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
 });
 
 mycustomname1("viewStart", {
@@ -257,8 +254,7 @@ mycustomname1("viewStart", {
 });
 
 mycustomname2("configure", {
-  "propertyID": "f46e981f-fd03-4bdd-a9d9-73ce4447f870",
-  "collectionUrl":"<insert-collection-domain-here>"
+  "propertyID": "f46e981f-fd03-4bdd-a9d9-73ce4447f870"
 });
 
 mycustomname2("viewStart", {
