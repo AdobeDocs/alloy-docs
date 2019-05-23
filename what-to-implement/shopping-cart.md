@@ -4,6 +4,10 @@ description: How to add data if you have products or a shopping cart
 
 # Products
 
+{% hint style="warning" %}
+This documentation if for a library and a service that is in Alpha and should not be used for production use cases. 
+{% endhint %}
+
 If you have products on your site then this is a default set of things the you will want to send to enable the most capabilities from Adobe. Though this is a suggestion it will provide you a very strong set of data right from the start. 
 
 ## Actions Related to Products
