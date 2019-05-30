@@ -7,7 +7,7 @@ This documentation is for a library and a service that is in Alpha and should no
 {% endhint %}
 
 # What is Alloy
-Alloy is a client-side JavaScript library that allows customers of the Adobe Experience Cloud to interact with the various services in teh Experience Cloud. It is meant to replace the following SDKs. 
+Alloy is a client-side JavaScript library that allows customers of the Adobe Experience Cloud to interact with the various services in the Experience Cloud. It is meant to replace the following SDKs. 
 - Visitor.js
 - AppMeasurment.js
 - AT.js
