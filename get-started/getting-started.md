@@ -7,7 +7,7 @@ description: >-
 # Getting Started \(without Launch\)
 
 {% hint style="warning" %}
-This documentation if for a library and a service that is in Alpha and should not be used for production use cases. 
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
 {% endhint %}
 
 ## Basic Concepts
