@@ -81,7 +81,7 @@ alloy("configure", {
 The options are as follows.
 
 * `propertyID` - \(required\) The property ID links the SDK to the appropriate accounts and configuration.
-* `collectionUrl` - \(optional\) The url that will be used to interact with Adobe Services. If you use a CNAME for collection, you will need to provide its URL here. 
+* `edgeDomain` - \(optional\) The url that will be used to interact with Adobe Services. Used if have a CNAME to Adobe's edge infrastructure. 
 * `debug` - \(optional\) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.  
 
 ### Starting a View
