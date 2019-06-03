@@ -119,64 +119,6 @@ alloy("event", {
 });
 ```
 
-### Augmenting Data
-
-Sometimes, not all data is available when a view starts or an event occurs. In such cases, you may augment data to prior `viewStart` or `event` data by passing `correlationID` as an option to `viewStart` or `event` commands.
-
-```javascript
-alloy("viewStart", {
-  "data": {
-    "key": "value"
-  },
-  "correlationID": 123456
-});
-
-// Time passes and more data becomes available
-
-alloy("event", {
-  "data": {
-    "key2": "value2"
-  },
-  "correlationID": 123456
-});
-```
-
-By passing the same correlation ID to both `viewStart` and `event` commands in this example, the data in the `event` command will be appended to data previously sent on the `viewStart` command.
-
-If you are sending data about a particular event to third-party providers, you may also wish to include the same correlation ID with that data as well. Later, if you choose to import the third-party data into the Adobe Experience Platform, the correlation ID will be used to stitch together all data that was collected as a result of the single event that occurred on your webpage.
-
-If you would like the SDK to generate a unique correlation ID on your behalf, you may use the `createCorrelationID` command to do so. As with all commands, a promise will be returned which will later be resolved with the ID itself. For your convenience, you may pass the promise as the `correlationID` option value on other commands and the SDK will handle it appropriately. This is demonstrated as follows:
-
-```javascript
-var correlationIDPromise = alloy("createCorrelationID");
-
-alloy("viewStart", {
-  "data": {
-    "key": "value"
-  },
-  "correlationID": correlationIDPromise
-});
-
-// Time passes and more data becomes available
-
-alloy("event", {
-  "data": {
-    "key2": "value2"
-  },
-  "correlationID": correlationIDPromise
-});
-```
-
-If you'd like to access the correlation ID value \(this may be necessary to send the ID to third-party providers\), you can explicitly wait for the promise to be resolved:
-
-```javascript
-var correlationIDPromise = alloy("createCorrelationID");
-
-correlationIDPromise.then(function(correlationID) {
-  console.log(correlationID);
-});
-```
-
 ### Debugging
 
 The `configure` command allows you to enable debugging. If you set the `debug` option to `true`, the SDK will log messages to the console that are helpful in understanding exactly what the SDK is doing.
