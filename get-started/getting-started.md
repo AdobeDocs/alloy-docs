@@ -42,6 +42,20 @@ With this change made, the global function would be named `mycustomname` instead
 
 This base code, in addition to creating a global function, also loads additional code contained within an external file \(`alloy.js`\) hosted on a server. By default, this code is loaded asynchronously to allow your webpage to be as performant as possible. This is the recommended implementation.
 
+#### Supporting Internet Explorer
+
+This SDK makes use of promises, which is a method of communicating the completion of asynchronous tasks. The [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) implementation used by Alloy is natively supported by all target browsers except Internet Explorer. As such, to use the SDK on Internet Explorer, you will need to have `window.Promise` [polyfilled](https://remysharp.com/2010/10/08/what-is-a-polyfill).
+
+The easiest way to determine if you already have `window.Promise` polyfilled is to open your website in Internet Explorer, open the browser's debugging console, type `window.Promise` into the console, then hit enter. If something other than `undefined` appears, you likely have already polyfilled `window.Promise`. Another way to determine if `window.Promise` is polyfilled is by loading your website after having completed the above installation instructions. If the SDK throws an error mentioning something about a promise, you likely have not polyfilled `window.Promise`.
+
+If you've determined you need to polyfill `window.Promise`, the easiest way to do so is by including the following script tag above the previously provided base code:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+```
+
+This will load in a script ensuring `window.Promise` is a valid Promise implementation.
+
 ### Configuration
 
 Configuration for the SDK is done with the `configure` command. This should _always_ be the first command called.
