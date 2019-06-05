@@ -55,7 +55,7 @@ alloy("configure", {
 The options are as follows.
 
 * `propertyID` - \(required\) The property ID links the SDK to the appropriate accounts and configuration.
-* `edgeDomain` - \(optional\) The domain that will be used to interact with Adobe Services. Used if you have a CNAME to Adobe's edge infrastructure.
+* `edgeDomain` - \(optional\) The domain that will be used to interact with Adobe Services. This is only used if you have a CNAME that proxies requests to Adobe's edge infrastructure.
 * `debug` - \(optional\) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.
 
 ### Executing Commands
@@ -102,7 +102,7 @@ alloy("event", {
 
 ### Starting a View
 
-When a view has started, you will need to notify the SDK by setting a type of `viewStart` in the `event` command. The definition of a view can depend on the context.
+When a view has started, you will need to notify the SDK by setting `type` to `viewStart` within the `event` command. The definition of a view can depend on the context.
 
 * In a regular website, each webpage would typically be considered a unique view. In this case, an event of type `viewStart` should be executed as soon as possible at the top of the page.
 * In a single page application \(SPA\), a view is less defined. It typically means that the user has navigated within the application and most of the content has changed. For those familiar with the technical foundations of single page applications, this is typically when the application loads a new route. Whenever a user moves to a new view, however you choose to define a "view", the event of type `viewStart` should be executed.
@@ -151,7 +151,7 @@ Within browsers embedded inside mobile applications, the SDK will behave exactly
 
 ### Retrieving Personalization Details for Custom Rendering
 
-If you would like to handle rendering of personalization content yourself, you can wait for the promise to be resolved after calling a view start `event` as follows:
+If you would like to handle rendering of personalization content yourself, you can wait for the promise to be resolved after executing an `event` command with a `type` value of `viewStart` as follows:
 
 ```javascript
 alloy("event", {
