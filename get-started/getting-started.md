@@ -42,6 +42,36 @@ With this change made, the global function would be named `mycustomname` instead
 
 This base code, in addition to creating a global function, also loads additional code contained within an external file \(`alloy.js`\) hosted on a server. By default, this code is loaded asynchronously to allow your webpage to be as performant as possible. This is the recommended implementation.
 
+#### Supporting Internet Explorer
+
+This SDK makes use of promises, which is a method of communicating the completion of asynchronous tasks. The [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) implementation used by Alloy is natively supported by all target browsers except Internet Explorer. As such, to use the SDK on Internet Explorer, you will need to have `window.Promise` [polyfilled](https://remysharp.com/2010/10/08/what-is-a-polyfill).
+
+The easiest way to determine if you already have `window.Promise` polyfilled is to open your website in Internet Explorer, open the browser's debugging console, type `window.Promise` into the console, then hit enter. If something other than `undefined` appears, you likely have already polyfilled `window.Promise`. Another way to determine if `window.Promise` is polyfilled is by loading your website after having completed the above installation instructions. If the SDK throws an error mentioning something about a promise, you likely have not polyfilled `window.Promise`.
+
+If you've determined you need to polyfill `window.Promise`, the easiest way to do so is by including the following script tag above the previously provided base code:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+```
+
+This will load in a script ensuring `window.Promise` is a valid Promise implementation.
+
+### Configuration
+
+Configuration for the SDK is done with the `configure` command. This should _always_ be the first command called.
+
+```javascript
+alloy("configure", {
+  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
+});
+```
+
+The options are as follows.
+
+* `propertyID` - \(required\) The property ID links the SDK to the appropriate accounts and configuration.
+* `edgeDomain` - \(optional\) The domain that will be used to interact with Adobe Services. This is only used if you have a CNAME that proxies requests to Adobe's edge infrastructure.
+* `debug` - \(optional\) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.
+
 ### Executing Commands
 
 Once the base code has been implemented on your webpage, you may begin executing commands with the SDK. You do not need to wait for the external file \(`alloy.js`\) to be loaded from the server before executing commands. If the SDK has not finished loading, commands will be queued and processed by the SDK as soon as possible.
@@ -68,48 +98,13 @@ alloy("commandName", options)
   })
 ```
 
-### Configuration
+### The `event` command
 
-Configuration for the SDK is done with the `configure` command. This should _always_ be the first command called.
-
-```javascript
-alloy("configure", {
-  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
-});
-```
-
-The options are as follows.
-
-* `propertyID` - \(required\) The property ID links the SDK to the appropriate accounts and configuration.
-* `edgeDomain` - \(optional\) The domain that will be used to interact with Adobe Services. Used if you have a CNAME to Adobe's edge infrastructure.
-* `debug` - \(optional\) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.  
-
-### Starting a View
-
-When a view has started, you will need to notify the SDK by executing the `viewStart` command. The definition of a view can depend on the context.
-
-* In a regular website, each webpage would typically be considered a unique view. In this case, `viewStart` should be executed as soon as possible at the top of the page.
-* In a single page application \(SPA\), a view is less defined. It typically means that the user has navigated within the application and most of the content has changed. For those familiar with the technical foundations of single page applications, this is typically when the application loads a new route. Whenever a user moves to a new view, however you choose to define a "view", the `viewStart` command should be executed.
-
-The `viewStart` command is the primary mechanism for sending data to the Adobe Experience Cloud and requesting content from the Adobe Experience Cloud. Here is how you start a view:
-
-```javascript
-alloy("viewStart", {
-  "data": {
-    "key": "value"
-  }
-});
-```
+In order to send event data to the Adobe Experience Cloud, you will want to use the `event` command.
 
 Any data you would like to be part of your analytics, personalization, audiences, or destinations should be sent using the `data` key.
 
 The `data` key will accept any XDM keys and any arbitrary key value pairs you would like to send and can be used in any of the use cases \(analytics personalization, audiences, destinations, etc\).
-
-Once data is sent, the server will respond with personalized content, among other things. This personalized content will be automatically rendered into your view. Link handlers will also be automatically attached to the new view's content.
-
-### Other Events
-
-Many times, events don't correspond to a view change. In these cases, you will want to use the `event` command. The `event` command supports the same options as the `viewStart` command, but won't automatically render personalization content or attach link handlers.
 
 ```javascript
 alloy("event", {
@@ -118,6 +113,26 @@ alloy("event", {
   },
 });
 ```
+
+### Starting a View
+
+When a view has started, you will need to notify the SDK by setting `type` to `viewStart` within the `event` command. The definition of a view can depend on the context.
+
+* In a regular website, each webpage would typically be considered a unique view. In this case, an event of type `viewStart` should be executed as soon as possible at the top of the page.
+* In a single page application \(SPA\), a view is less defined. It typically means that the user has navigated within the application and most of the content has changed. For those familiar with the technical foundations of single page applications, this is typically when the application loads a new route. Whenever a user moves to a new view, however you choose to define a "view", the event of type `viewStart` should be executed.
+
+The event with type `viewStart` is the primary mechanism for sending data to the Adobe Experience Cloud and requesting content from the Adobe Experience Cloud. Here is how you start a view:
+
+```javascript
+alloy("event", {
+  "type": "viewStart",
+  "data": {
+    "key": "value"
+  }
+});
+```
+
+Once data is sent, the server will respond with personalized content, among other things. This personalized content will be automatically rendered into your view. Link handlers will also be automatically attached to the new view's content.
 
 ### Debugging
 
@@ -150,10 +165,11 @@ Within browsers embedded inside mobile applications, the SDK will behave exactly
 
 ### Retrieving Personalization Details for Custom Rendering
 
-If you would like to handle rendering of personalization content yourself, you can wait for the promise to be resolved after calling `viewStart` or `event` as follows:
+If you would like to handle rendering of personalization content yourself, you can wait for the promise to be resolved after executing an `event` command with a `type` value of `viewStart` as follows:
 
 ```javascript
-alloy("viewStart", {
+alloy("event", {
+  type: "viewStart",
   data: {
     "key": "value"
   }
@@ -194,7 +210,7 @@ mycustomname1("configure", {
   "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
 });
 
-mycustomname1("viewStart", {
+mycustomname1("event", {
   "data": {
     "key": "value"
   }
@@ -204,7 +220,7 @@ mycustomname2("configure", {
   "propertyID": "f46e981f-fd03-4bdd-a9d9-73ce4447f870"
 });
 
-mycustomname2("viewStart", {
+mycustomname2("event", {
   "data": {
     "key": "value"
   }
@@ -230,4 +246,3 @@ To load the file synchronously instead of asynchronously, simply remove the `asy
 </script>
 <script src="alloy.js"></script>
 ```
-
