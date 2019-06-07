@@ -7,7 +7,7 @@ description: >-
 # Getting Started \(without Launch\)
 
 {% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
 ## Basic Concepts
@@ -50,7 +50,7 @@ The easiest way to determine if you already have `window.Promise` polyfilled is 
 
 If you've determined you need to polyfill `window.Promise`, the easiest way to do so is by including the following script tag above the previously provided base code:
 
-```html
+```markup
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
 ```
 
@@ -246,3 +246,4 @@ To load the file synchronously instead of asynchronously, simply remove the `asy
 </script>
 <script src="alloy.js"></script>
 ```
+
