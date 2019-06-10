@@ -70,7 +70,7 @@ The options are as follows.
 
 * `propertyID` - \(required\) The property ID links the SDK to the appropriate accounts and configuration.
 * `edgeDomain` - \(optional\) The domain that will be used to interact with Adobe Services. This is only used if you have a CNAME that proxies requests to Adobe's edge infrastructure.
-* `debug` - \(optional\) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.
+* `log` - \(optional\) A boolean indicating whether debugging messages will be displayed in the browser's JavaScript console.
 
 ### Executing Commands
 
@@ -134,28 +134,28 @@ alloy("event", {
 
 Once data is sent, the server will respond with personalized content, among other things. This personalized content will be automatically rendered into your view. Link handlers will also be automatically attached to the new view's content.
 
-### Debugging
+### Logging
 
-The `configure` command allows you to enable debugging. If you set the `debug` option to `true`, the SDK will log messages to the console that are helpful in understanding exactly what the SDK is doing.
+The `configure` command allows you to enable logging. If you set the `log` option to `true`, the SDK will log messages to the console that are helpful in understanding exactly what the SDK is doing.
 
 ```javascript
 alloy("configure", {
   "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "debug": true
+  "log": true
 });
 ```
 
-For your convenience, you can also toggle debugging through a separate `debug` command as follows:
+For your convenience, you can also toggle logging through a separate `log` command as follows:
 
 ```javascript
-alloy("debug", {
+alloy("log", {
   "enabled": true
 })
 ```
 
-Note that you may execute this `debug` command within your browser's JavaScript console to toggle debugging at any time. This can be particularly useful when it's difficult to change code on your webpage or you don't want debugging messages to be produced for all users of your website.
+Note that you may execute this `log` command within your browser's JavaScript console to toggle logging at any time. This can be particularly useful when it's difficult to change code on your webpage or you don't want logging messages to be produced for all users of your website.
 
-When debugging is enabled, it will remain enabled until you disable it again. You can disable debugging through the same mechanisms just outlined, but by using a value of `false` instead of `true`.
+When logging is enabled, it will remain enabled until you disable it again. You can disable logging through the same mechanisms just outlined, but by using a value of `false` instead of `true`.
 
 ## Customization for Specific Use Cases
 
