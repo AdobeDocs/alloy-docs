@@ -34,6 +34,6 @@ Additionally logging can be enabled by adding `alloy_log=true` as query paramete
 
 ```http
 https://www.example.com?alloy_log=true
-````
+```
 
 When logging is enabled, it will remain enabled until you disable it again. You can disable logging through the same mechanisms just outlined, but by using a value of `false` instead of `true`.
