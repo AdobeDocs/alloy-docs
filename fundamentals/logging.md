@@ -26,6 +26,14 @@ alloy("log", {
 });
 ```
 
+{% hint style="info" %}
 Note that you may execute this `log` command within your browser's JavaScript console to toggle logging at any time. This can be particularly useful when it's difficult to change code on your webpage or you don't want logging messages to be produced for all users of your website.
+{% endhint %}
+
+Additionally logging can be enabled by adding `alloy_log=true` as query parameter in the URL to enable logging to enabled it just on your browser.
+
+```http
+https://www.example.com?alloy_log=true
+````
 
 When logging is enabled, it will remain enabled until you disable it again. You can disable logging through the same mechanisms just outlined, but by using a value of `false` instead of `true`.
