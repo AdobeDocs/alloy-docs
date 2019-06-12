@@ -53,15 +53,17 @@ alloy("event", {
   "data": {
     "key": "value"
   }
-}).then(function(req, res) {
-    // The event succeeded.
-    // The event returns the request (req) and the response (res)
+}).then(function(result) {
+    // Tracking the event succeeded.
   })
   .catch(function(error) {
-    // The event failed.
-    // "error" will be an error object with additional information
+    // Tracking the event failed.
   })
 ;
 ```
 
-The promise will return a `req` and `res` parameter. `req` is the request that alloy sent to Adobe and the `res` is the response that Adobe returned. 
+When tracking an event succeeds, a `result` object is provided. This object has the following properties:
+
+ * `requestBody` - This the body that was sent on the request to the server.
+ * `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by Alloy (for example, when `type` is `viewStart`).
+ 
