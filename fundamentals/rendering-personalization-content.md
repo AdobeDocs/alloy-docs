@@ -17,9 +17,8 @@ alloy("event", {
   data: {
     "key": "value"
   }
-}).then(function(value) {
+}).then(function(req, res) {
   // More details to come about what value holds and how to use
   // it to render personalization content.
 });
 ```
-

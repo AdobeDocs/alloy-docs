@@ -42,3 +42,26 @@ alloy("event", {
 ```
 
 Once data is sent, the server will respond with personalized content, among other things. This personalized content will be automatically rendered into your view. Link handlers will also be automatically attached to the new view's content.
+
+## Handling Responses from Events
+
+If you want to handle a response from an event you can promise to the event like so. 
+
+```javascript
+alloy("event", {
+  "type": "viewStart",
+  "data": {
+    "key": "value"
+  }
+}).then(function(req, res) {
+    // The event succeeded.
+    // The event returns the request (req) and the response (res)
+  })
+  .catch(function(error) {
+    // The event failed.
+    // "error" will be an error object with additional information
+  })
+;
+```
+
+The promise will return a `req` and `res` parameter. `req` is the request that alloy sent to Adobe and the `res` is the response that Adobe returned. 
