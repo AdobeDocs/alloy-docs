@@ -23,9 +23,30 @@ alloy("event", {
 });
 ```
 
-## Starting a View
+{% hint style="warning" %}
+Be sure to understand how to track different types of events as outlined below. Failing to do so may result in a loss of functionality.
+{% endhint %}
 
-When a view has started, you will need to notify the SDK by setting `type` to `viewStart` within the `event` command. The definition of a view can depend on the context.
+## Event Types
+
+For each event, you may pass in a `type` property indicating the type of event that occurred as follows:
+
+```javascript
+alloy("event", {
+  "type": "somethingOccurred",
+  "data": {
+    "key":"value"
+  },
+});
+```
+
+While you may pass in arbitrary values for the `type` property, there are also important built-in `type` values you should leverage. Below, you will learn about these built-in event types and the corresponding functionality they provide.
+
+### Starting a View
+
+When a view has started, it is important to notify the SDK by setting `type` to `viewStart` within the `event` command. This will indicate, among other things, that Alloy should retrieve and render personalization content. Even if you are not using personalization currently, it will greatly simplify enabling personalization or other features later because you will not be required to modify on-page code. In addition, tracking views will be beneficial when viewing analytics reports after data has been collected.
+
+The definition of a view can depend on the context.
 
 * In a regular website, each webpage would typically be considered a unique view. In this case, an event of type `viewStart` should be executed as soon as possible at the top of the page.
 * In a single page application \(SPA\), a view is less defined. It typically means that the user has navigated within the application and most of the content has changed. For those familiar with the technical foundations of single page applications, this is typically when the application loads a new route. Whenever a user moves to a new view, however you choose to define a "view", the event of type `viewStart` should be executed.
