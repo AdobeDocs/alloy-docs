@@ -8,6 +8,7 @@
 * [Executing Commands](fundamentals/executing-commands.md)
 * [Configuring the SDK](fundamentals/configuring-the-sdk.md)
 * [Tracking Events](fundamentals/tracking-events.md)
+* [Stitching Event Data](fundamentals/stitching-event-data.md)
 * [Logging](fundamentals/logging.md)
 * [Interacting with Multiple Properties](fundamentals/interacting-with-multiple-properties.md)
 * [Rendering Personalization Content](fundamentals/rendering-personalization-content.md)
