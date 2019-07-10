@@ -64,7 +64,7 @@ alloy("event", {
 If you'd like to access the stitch ID (for example, to send to a third-party provider), you can explicitly wait for the promise to be resolved:
 
 ```javascript
-var stitchIdPromise = alloy("createCorrelationID");
+var stitchIdPromise = alloy("getStitchId");
 
 stitchIdPromise.then(function(stitchId) {
   console.log(stitchId);
