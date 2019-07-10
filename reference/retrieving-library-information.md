@@ -1,17 +1,18 @@
 ---
-description: >-
-  Learn how to retrieve information about the library loaded onto the website.
+description: Learn how to retrieve information about the library loaded onto the website.
 ---
+
+# Retrieving Library Information
 
 {% hint style="warning" %}
 This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
-# Retrieving Library Information
+## Retrieving Library Information
 
 It's often helpful to access some of the details behind the library you have loaded onto your website. To do this, execute the `getLibraryInfo` command as follows:
 
-```js
+```javascript
 alloy("getLibraryInfo").then(function(libraryInfo) {
   console.log(libraryInfo.version);
 });

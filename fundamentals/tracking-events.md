@@ -1,13 +1,14 @@
 ---
-description: >-
-  Learn how to track events. 
+description: Learn how to track events.
 ---
 
+# Tracking Events
+
 {% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
-# Tracking Events
+## Tracking Events
 
 In order to send event data to the Adobe Experience Cloud, you will want to use the `event` command.
 
@@ -23,7 +24,7 @@ alloy("event", {
 });
 ```
 
-## Starting a View
+### Starting a View
 
 When a view has started, you will need to notify the SDK by setting `type` to `viewStart` within the `event` command. The definition of a view can depend on the context.
 
@@ -43,9 +44,9 @@ alloy("event", {
 
 Once data is sent, the server will respond with personalized content, among other things. This personalized content will be automatically rendered into your view. Link handlers will also be automatically attached to the new view's content.
 
-## Handling Responses from Events
+### Handling Responses from Events
 
-If you want to handle a response from an event you can promise to the event like so. 
+If you want to handle a response from an event you can promise to the event like so.
 
 ```javascript
 alloy("event", {
@@ -64,6 +65,6 @@ alloy("event", {
 
 When tracking an event succeeds, a `result` object is provided. This object has the following properties:
 
- * `requestBody` - This the body that was sent on the request to the server.
- * `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by Alloy (for example, when `type` is `viewStart`).
- 
+* `requestBody` - This the body that was sent on the request to the server.
+* `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by Alloy \(for example, when `type` is `viewStart`\).
+

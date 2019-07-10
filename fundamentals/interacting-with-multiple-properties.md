@@ -1,13 +1,14 @@
 ---
-description: >-
-  Learn how to interact with multiple properties.
+description: Learn how to interact with multiple properties.
 ---
 
+# Interacting with Multiple Properties
+
 {% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
-# Interacting with Multiple Properties
+## Interacting with Multiple Properties
 
 There are certain cases where you might want to interact with two different properties on the same page. These include:
 
@@ -56,3 +57,4 @@ mycustomname2("event", {
 ```
 
 Be sure to execute the `configure` command for each instance before executing other commands on the same instance.
+

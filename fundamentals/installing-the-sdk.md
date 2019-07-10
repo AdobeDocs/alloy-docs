@@ -1,15 +1,16 @@
 ---
-description: >-
-  Learn how to install the SDK. 
+description: Learn how to install the SDK.
 ---
-
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
-{% endhint %}
 
 # Installing the SDK
 
-The first step in implemented the Adobe Experience Platform SDK is to copy and paste the following "base code" as high as possible in the `<head>` tag of your HTML:
+{% hint style="warning" %}
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
+{% endhint %}
+
+## Installing the SDK
+
+The first step in implementing the Adobe Experience Platform SDK is to copy and paste the following "base code" as high as possible in the `<head>` tag of your HTML:
 
 ```markup
 <script>
@@ -37,7 +38,7 @@ With this change made, the global function would be named `mycustomname` instead
 
 This base code, in addition to creating a global function, also loads additional code contained within an external file \(`alloy.js`\) hosted on a server. By default, this code is loaded asynchronously to allow your webpage to be as performant as possible. This is the recommended implementation.
 
-## Supporting Internet Explorer
+### Supporting Internet Explorer
 
 This SDK makes use of promises, which is a method of communicating the completion of asynchronous tasks. The [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) implementation used by Alloy is natively supported by all target browsers except Internet Explorer. As such, to use the SDK on Internet Explorer, you will need to have `window.Promise` [polyfilled](https://remysharp.com/2010/10/08/what-is-a-polyfill).
 
@@ -45,17 +46,17 @@ The easiest way to determine if you already have `window.Promise` polyfilled is 
 
 If you've determined you need to polyfill `window.Promise`, the easiest way to do so is by including the following script tag above the previously provided base code:
 
-```html
+```markup
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
 ```
 
 This will load in a script ensuring `window.Promise` is a valid Promise implementation.
 
-## Loading the JavaScript File Synchronously
+### Loading the JavaScript File Synchronously
 
 As explained previously, the base code you have copied and pasted into your website's HTML will load an external file with additional code. This additional code contains the core functionality of the SDK. Any command you attempt to execute while this file is loading will be queued and then processed once the file is loaded. This is the most performant method of installation.
 
-Under certain circumstances, however, you may wish to load the file synchronously \(more details about these circumstances will be documented later\). Doing so will block the rest of the HTML document from being parsed and rendered by the browser until the external file has been loaded and executed. This additional delay before displaying primary content to users is typically frowned upon, but may make sense depending on the circumstances.
+Under certain circumstances, however, you may wish to load the file synchronously. More details about these circumstances will be documented later. Doing so will block the rest of the HTML document from being parsed and rendered by the browser until the external file has been loaded and executed. This additional delay before displaying primary content to users is typically frowned upon, but may make sense depending on the circumstances.
 
 To load the file synchronously instead of asynchronously, simply remove the `async` attribute from the second `script` tag as shown below:
 
@@ -68,3 +69,4 @@ To load the file synchronously instead of asynchronously, simply remove the `asy
 </script>
 <script src="alloy.js"></script>
 ```
+
