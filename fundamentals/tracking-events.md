@@ -44,7 +44,7 @@ While you may pass in arbitrary values for the `type` property, there are also i
 
 ### Starting a View
 
-When a view has started, it is important to notify the SDK by setting `type` to `viewStart` within the `event` command. This will indicate, among other things, that Alloy should retrieve and render personalization content. Even if you are not using personalization currently, it will greatly simplify enabling personalization or other features later because you will not be required to modify on-page code. In addition, tracking views will be beneficial when viewing analytics reports after data has been collected.
+When a view has started, it is important to notify the SDK by setting `type` to `viewStart` within the `event` command. This will indicate, among other things, that the SDK should retrieve and render personalization content. Even if you are not using personalization currently, it will greatly simplify enabling personalization or other features later because you will not be required to modify on-page code. In addition, tracking views will be beneficial when viewing analytics reports after data has been collected.
 
 The definition of a view can depend on the context.
 
@@ -86,5 +86,5 @@ alloy("event", {
 When tracking an event succeeds, a `result` object is provided. This object has the following properties:
 
  * `requestBody` - This the body that was sent on the request to the server.
- * `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by Alloy (for example, when `type` is `viewStart`).
+ * `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by the SDK (for example, when `type` is `viewStart`).
  

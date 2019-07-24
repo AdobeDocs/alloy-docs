@@ -9,7 +9,7 @@ This documentation is for a library and a service that is in Alpha and should no
 
 ### Rendering Personalization Content
 
-By default, Alloy will automatically take care of rendering personalization content. If you would like to handle rendering of personalization content yourself, you can wait for the promise to be resolved after executing an `event` command with a `type` value of `viewStart` as follows:
+By default, the SDK will automatically take care of rendering personalization content. If you would like to handle rendering of personalization content yourself, you can wait for the promise to be resolved after executing an `event` command with a `type` value of `viewStart` as follows:
 
 ```javascript
 alloy("event", {
