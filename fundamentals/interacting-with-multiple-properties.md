@@ -35,7 +35,7 @@ Following the above example, you can now execute commands using each of the inst
 
 ```javascript
 mycustomname1("configure", {
-  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
+  "propertyId": "ebebf826-a01f-4458-8cec-ef61de241c93"
 });
 
 mycustomname1("event", {
@@ -45,7 +45,7 @@ mycustomname1("event", {
 });
 
 mycustomname2("configure", {
-  "propertyID": "f46e981f-fd03-4bdd-a9d9-73ce4447f870"
+  "propertyId": "f46e981f-fd03-4bdd-a9d9-73ce4447f870"
 });
 
 mycustomname2("event", {
