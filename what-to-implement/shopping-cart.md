@@ -28,11 +28,12 @@ These will be all be represented in the `type` parameter of an event.
 
 ```javascript
 adbe('event', {
-	"type": "Add to Cart",		
-	"pageName": "PDP: Air Shaq",
-	"pageType": "Product Detail Page",
+	"data": {
+		"type": "Add to Cart",		
+		"pageName": "PDP: Air Shaq",
+		"pageType": "Product Detail Page",
 	},
-})
+});
 ```
 
 ## Adobe Recommended Product Information
@@ -47,15 +48,16 @@ You will want to include the following information in your each of the events ab
 * `productPrice` - The full list price of the product. Should be sent when a product is added to cart as well as when a product is purchased. 
 * `productCategory` - The category that was used to find the product \(if a product can be listed in multiple categories\). 
 * `productSubCategory` - The subcategory \(if any\) that was used to find a product. \(additional keys may be added to indicate further levels of sub categorization if you have them, remember to add them to your XDM\). 
-* `startRating` - The customer rating of the product on display
+* `starRating` - The customer rating of the product on display
 * `productSku` - The Sku of the product after it is available \(e.g. when someone adds it to the cart\)
 
 Here is an example of how this data would be sent in. 
 
 ```javascript
-adbe('viewStart', {
-	"type": "Add to Cart",
+adbe('event', {
+  "isViewStart": true,
 	"data": {
+		"type": "Add to Cart",
 		"products": [
 			{
 				"productId":12345,
@@ -73,7 +75,7 @@ adbe('viewStart', {
 		"pageName": "PDP: Air Shaq",
 		"pageType": "Product Detail Page"
 	},
-})
+});
 ```
 
 ### Event Specific Attributes
@@ -89,9 +91,10 @@ Purchase events add the following attributes
   * `discountAmount` - The amount of this discount removes from the order. 
 
 ```javascript
-adbe('viewStart', {
-	"type": "Add to Cart",
+adbe('event', {
+  "isViewStart": true,
 	"data": {
+		"type": "Add to Cart",
 		"products": [
 			{
 				"productId":12345,
@@ -121,7 +124,7 @@ adbe('viewStart', {
 		"pageName": "Thank You Page",
 		"pageType": "Thank You Page"
 	},
-})
+});
 ```
 
 ## Additional Use Case Specific Recommendations
