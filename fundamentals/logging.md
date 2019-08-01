@@ -13,7 +13,7 @@ The `configure` command allows you to enable logging. If you set the `log` optio
 
 ```javascript
 alloy("configure", {
-  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "propertyId": "ebebf826-a01f-4458-8cec-ef61de241c93",
   "log": true
 });
 ```
