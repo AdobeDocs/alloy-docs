@@ -53,7 +53,7 @@ alloy("optIn", {
 });
 ```  
 
-Because the user chose to not opt into any purposes, promises that were returned from previously queued commands will be rejected. Future commands that depend on the user opting in will return promises that are similarly rejected.
+Because the user chose to not opt into any purposes, promises that were returned from previously queued commands will be rejected. Future commands that depend on the user opting in will return promises that are similarly rejected. If you would like to suppress this behavior, please refer to the `suppressErrors` option in [Configuring the SDK](configuring-the-sdk.md).
 
 ## Persistence of User Preferences
 
