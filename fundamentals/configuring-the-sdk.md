@@ -42,14 +42,14 @@ Your assigned Experience Cloud organization ID.
 **Required:** No\
 **Default Value: `alpha.konductor.adobedc.net`** 
 
-The domain that will be used to interact with Adobe Services. This is only used if you have a CNAME that proxies requests to Adobe's edge infrastructure.
+The domain that will be used to interact with Adobe Services. This is only used if you have a first party domain (CNAME) that proxies requests to Adobe's edge infrastructure.
 
 ### `log`
 **Type:** Boolean\
 **Required:** No\
 **Default Value:** `false`
 
-Indicates whether debugging messages should be displayed in the browser's JavaScript console.
+Indicates whether debugging messages should be displayed in the browser's JavaScript console. This setting is sticky and will persist until you change it. 
 
 ### `suppressErrors`
  **Type:** Boolean\
