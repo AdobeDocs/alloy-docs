@@ -21,4 +21,5 @@
 
 ## Reference
 
+* [Automatically Collected Information](reference/automatic-information.md)
 * [Retrieving Library Information](reference/retrieving-library-information.md)
