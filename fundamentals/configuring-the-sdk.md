@@ -58,7 +58,7 @@ Indicates whether debugging messages should be displayed in the browser's JavaSc
 
 Indicates whether errors should be suppressed. As described in [Executing Commands](executing-commands.md), _uncaught_ errors will be logged to the developer console, regardless of whether logging is enabled in Alloy. By setting `suppressErrors` to `true`, promises returned from Alloy will never be rejected, though errors will still be logged to the console if logging is enabled in Alloy. 
 
-# Privacy Options
+## Privacy Options
 
 ### `optInEnabled`
  **Type:** Boolean\
