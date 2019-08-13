@@ -7,7 +7,7 @@ description: >-
 This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
-The Adobe Experience Cloud SDK collects a number of pieces of information automatically without any special configuration, however, they can be disabled if needed using the `configure` command [See Confiuring the SDK](fundamentals/configuring-the-sdk.md). Below is a list of those pieces of information.
+The Adobe Experience Cloud SDK collects a number of pieces of information automatically without any special configuration, however, they can be disabled if needed using the `configure` command [See Configuring the SDK](fundamentals/configuring-the-sdk.md). Below is a list of those pieces of information.
 
 ## Device
 
@@ -75,7 +75,7 @@ Information about the location of the end user.
 **Path in Payload:** `events[].placeContext.localTime`  
 **Example:** `2019-08-07T22:47:17.129Z`  
 
-Local timestamp for the end user in simplified extended ISO format (ISO 8601)[https://en.wikipedia.org/wiki/ISO_8601]. 
+Local timestamp for the end user in simplified extended ISO format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). 
 
 ### Local Timezone Offset
 
