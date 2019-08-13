@@ -66,3 +66,32 @@ Indicates whether errors should be suppressed. As described in [Executing Comman
  **Default Value:** `false`
  
 Enables the opt-in feature, which allows work to be queued until the user provides his/her opt-in preferences. Once the user's preferences have been provided, work will either proceed or be aborted based on the user's preferences. See [Supporting Opt-In](supporting-opt-in.md) for more information.
+
+# Personalization Options
+
+### `prehidingId`
+ **Type:** String\
+ **Required:** No\
+ **Default Value:** `alloy-prehiding`
+
+Used to set the DOM node ID of the style tag that is created by personalization component to make sure the is no flicker.
+
+### `prehidingStyle`
+ **Type:** String\
+ **Required:** No\
+ **Default Value:** none
+ 
+Used to customize the CSS style definition that would be used by personalization component to create a style tag that will ensure that there is no flicker.
+If this option is not provided the personalization component won't try to apply any flicker management logic.
+
+### `authoringMode`
+ **Type:** Boolean\
+ **Required:** No\
+ **Default Value:** `false`
+ 
+Enables personalization component authoring mode, which will ensure that no personalization content will be retrieved from the backend and no data collection requests will be initiated from within the personalization component.
+For Adobe Target Visual Experience Composer this option should be intialized to something like:
+```javascript
+  authoringMode: document.location.href.indexOf("mboxEdit") !== -1
+```
+If other WYSIWYG tools are used to create personalized experiences and content then this option should be intialized accordingly.
