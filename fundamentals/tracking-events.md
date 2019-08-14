@@ -1,13 +1,14 @@
 ---
-description: >-
-  Learn how to track events. 
+description: Learn how to track events.
 ---
 
+# Tracking Events
+
 {% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
-# Tracking Events
+## Tracking Events
 
 In order to send event data to the Adobe Experience Cloud, you will want to use the `event` command.
 
@@ -23,30 +24,9 @@ alloy("event", {
 });
 ```
 
-{% hint style="warning" %}
-Be sure to understand how to track different types of events as outlined below. Failing to do so may result in a loss of functionality.
-{% endhint %}
-
-## Event Types
-
-For each event, you may pass in a `type` property indicating the type of event that occurred as follows:
-
-```javascript
-alloy("event", {
-  "type": "somethingOccurred",
-  "data": {
-    "key":"value"
-  },
-});
-```
-
-While you may pass in arbitrary values for the `type` property, there are also important built-in `type` values you should leverage. Below, you will learn about these built-in event types and the corresponding functionality they provide.
-
 ### Starting a View
 
-When a view has started, it is important to notify the SDK by setting `type` to `viewStart` within the `event` command. This will indicate, among other things, that the SDK should retrieve and render personalization content. Even if you are not using personalization currently, it will greatly simplify enabling personalization or other features later because you will not be required to modify on-page code. In addition, tracking views will be beneficial when viewing analytics reports after data has been collected.
-
-The definition of a view can depend on the context.
+When a view has started, you will need to notify the SDK by setting `type` to `viewStart` within the `event` command. The definition of a view can depend on the context.
 
 * In a regular website, each webpage would typically be considered a unique view. In this case, an event of type `viewStart` should be executed as soon as possible at the top of the page.
 * In a single page application \(SPA\), a view is less defined. It typically means that the user has navigated within the application and most of the content has changed. For those familiar with the technical foundations of single page applications, this is typically when the application loads a new route. Whenever a user moves to a new view, however you choose to define a "view", the event of type `viewStart` should be executed.
@@ -64,9 +44,9 @@ alloy("event", {
 
 Once data is sent, the server will respond with personalized content, among other things. This personalized content will be automatically rendered into your view. Link handlers will also be automatically attached to the new view's content.
 
-## Handling Responses from Events
+### Handling Responses from Events
 
-If you want to handle a response from an event you can promise to the event like so. 
+If you want to handle a response from an event you can promise to the event like so.
 
 ```javascript
 alloy("event", {
@@ -85,6 +65,6 @@ alloy("event", {
 
 When tracking an event succeeds, a `result` object is provided. This object has the following properties:
 
- * `requestBody` - This the body that was sent on the request to the server.
- * `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by the SDK (for example, when `type` is `viewStart`).
- 
+* `requestBody` - This the body that was sent on the request to the server.
+* `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by Alloy \(for example, when `type` is `viewStart`\).
+
