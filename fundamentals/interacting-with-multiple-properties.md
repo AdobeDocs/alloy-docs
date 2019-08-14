@@ -1,14 +1,13 @@
 ---
-description: Learn how to interact with multiple properties.
+description: >-
+  Learn how to interact with multiple properties.
 ---
 
-# Interacting with Multiple Properties
-
 {% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
 {% endhint %}
 
-## Interacting with Multiple Properties
+# Interacting with Multiple Properties
 
 There are certain cases where you might want to interact with two different properties on the same page. These include:
 
@@ -36,7 +35,7 @@ Following the above example, you can now execute commands using each of the inst
 
 ```javascript
 mycustomname1("configure", {
-  "propertyID": "ebebf826-a01f-4458-8cec-ef61de241c93"
+  "propertyId": "ebebf826-a01f-4458-8cec-ef61de241c93"
 });
 
 mycustomname1("event", {
@@ -46,7 +45,7 @@ mycustomname1("event", {
 });
 
 mycustomname2("configure", {
-  "propertyID": "f46e981f-fd03-4bdd-a9d9-73ce4447f870"
+  "propertyId": "f46e981f-fd03-4bdd-a9d9-73ce4447f870"
 });
 
 mycustomname2("event", {
@@ -57,4 +56,3 @@ mycustomname2("event", {
 ```
 
 Be sure to execute the `configure` command for each instance before executing other commands on the same instance.
-

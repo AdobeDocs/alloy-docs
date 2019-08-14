@@ -8,7 +8,7 @@ description: How to add data if you have products or a shopping cart
 This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
 {% endhint %}
 
-If you have products on your site then this is a default set of things the you will want to send to enable the most capabilities from Adobe. Though this is only a suggestion it will provide you a very strong set of data right from the start. 
+If you have products on your site then this is a default set of things the you will want to send to enable the most capabilities from Adobe. Though this is a suggestion it will provide you a very strong set of data right from the start. 
 
 ## Actions Related to Products
 
@@ -16,13 +16,13 @@ There are certain actions that make sense to capture in relation to the purchase
 
 * `Product View` -- When a customer views a product
 * `Product Quick View` -- When a customer sees a preview of a product, that allows them to add the product to the cart or purchase the product. Not applicable to all companies. 
-* `Add to Cart` -- When a product was added to cart regardless of its origin. 
+* `Add to Cart` -- When a product was added to cart regardless where it was added from. 
 * `View Cart` -- When a customer views the contents of their cart. All products in the cart should be passed in. 
 * `Remove from Cart` -- When a customer removes a product from the cart. 
 * `Begin Checkout` - When a customer starts the checkout process
 * `Purchase` - When a customer completes a purchase \(usually the Thank You or Confirmation View\). 
 * `Return` - When a customer returns one or more products. 
-* `Cancel Order` - When a customer cancels an order before it has been shipped.
+* `Cancel Order` - When a customer cancels an order before it has been shipped
 
 These will be all be represented in the `type` parameter of an event. 
 
@@ -43,12 +43,12 @@ You will want to include the following information in your each of the events ab
 
 * `productId` - The product ID, this is usually how you refer to the product internally. Customers will usually add product catalog data to this ID. 
 * `productName` - The display name of the product. 
-* `productImage` - A URL for the image. This is used when you want to display an image in the product. \(e.g. recommendation use cases\)
+* `productImage` - A URL for the image. This is used when you want to display an image in the product. \(e.g. recommendations use cases\)
 * `productPrice` - The full list price of the product. Should be sent when a product is added to cart as well as when a product is purchased. 
 * `productCategory` - The category that was used to find the product \(if a product can be listed in multiple categories\). 
-* `productSubCategory` - The subcategory \(if any\) that was used to find a product. Additional keys may be added to indicate further levels of sub categorization if you have them. Remember to add them to your XDM. 
+* `productSubCategory` - The subcategory \(if any\) that was used to find a product. \(additional keys may be added to indicate further levels of sub categorization if you have them, remember to add them to your XDM\). 
 * `startRating` - The customer rating of the product on display
-* `productSku` - The SKU of the product after it is available \(e.g. when someone adds it to the cart\)
+* `productSku` - The Sku of the product after it is available \(e.g. when someone adds it to the cart\)
 
 Here is an example of how this data would be sent in. 
 
@@ -83,10 +83,10 @@ adbe('viewStart', {
 Purchase events add the following attributes
 
 * `purchaseId` - This is the id for the order or the order number. 
-* `discounts` - This is an array where order level discounts are applied. 
-  * `discountName` - The friendly name of the discount.
-  * `discountType` - The type of discount \(E.g. % off, BOGO, Freeshipping, etc\).
-  * `discountAmount` - The amount of this discount is removed from the order. 
+* `discounts` - This is an array are order level discounts that are applied 
+  * `discountName` - The friendly name of the discount
+  * `discountType` - The type of discount \(E.g. % off, BOGO, Freeshipping, etc\)
+  * `discountAmount` - The amount of this discount removes from the order. 
 
 ```javascript
 adbe('viewStart', {
