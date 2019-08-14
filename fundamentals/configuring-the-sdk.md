@@ -66,3 +66,31 @@ Indicates whether errors should be suppressed. As described in [Executing Comman
  **Default Value:** `false`
  
 Enables the opt-in feature, which allows work to be queued until the user provides his/her opt-in preferences. Once the user's preferences have been provided, work will either proceed or be aborted based on the user's preferences. See [Supporting Opt-In](supporting-opt-in.md) for more information.
+
+## Personalization Options
+
+### `prehidingStyle`
+ **Type:** String\
+ **Required:** No\
+ **Default Value:** none
+ 
+Used to create a CSS style definition that will hide content areas of your web page while personalized content is loaded from the server. If this option is not provided, the SDK will not attempt to hide any content areas while personalized content is loaded, potentially resulting in "flicker".
+
+For example, if you had an element on your web page with an ID of `container` whose default content you would like to hide while personalized content is being loaded from the server, an example of a prehiding style would be as follows:
+
+```javascript
+  prehidingStyle: "#container { opacity: 0 !important }"
+```
+
+
+### `authoringModeEnabled`
+ **Type:** Boolean\
+ **Required:** No\
+ **Default Value:** `false`
+ 
+Enables the personalization component authoring mode, which will ensure that no personalization content will be retrieved from the server and no data collection requests will be initiated from within the personalization component.
+For Adobe Target Visual Experience Composer this option should be initialized to something like:
+```javascript
+  authoringModeEnabled: document.location.href.indexOf("mboxEdit") !== -1
+```
+If other WYSIWYG tools are used to create personalized experiences and content, then this option should be initialized accordingly.
