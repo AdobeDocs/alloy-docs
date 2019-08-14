@@ -67,31 +67,30 @@ Indicates whether errors should be suppressed. As described in [Executing Comman
  
 Enables the opt-in feature, which allows work to be queued until the user provides his/her opt-in preferences. Once the user's preferences have been provided, work will either proceed or be aborted based on the user's preferences. See [Supporting Opt-In](supporting-opt-in.md) for more information.
 
-# Personalization Options
-
-### `prehidingId`
- **Type:** String\
- **Required:** No\
- **Default Value:** `alloy-prehiding`
-
-Used to set the DOM node ID of the style tag that is created by personalization component to make sure the is no flicker.
+## Personalization Options
 
 ### `prehidingStyle`
  **Type:** String\
  **Required:** No\
  **Default Value:** none
  
-Used to customize the CSS style definition that would be used by personalization component to create a style tag that will ensure that there is no flicker.
-If this option is not provided the personalization component won't try to apply any flicker management logic.
+Used to create a CSS style definition that will hide content areas of your web page while personalized content is loaded from the server. If this option is not provided, the SDK will not attempt to hide any content areas while personalized content is loaded, potentially resulting in "flicker".
 
-### `authoringMode`
+For example, if you had an element on your web page with an ID of `container` whose default content you would like to hide while personalized content is being loaded from the server, an example of a prehiding style would be as follows:
+
+```javascript
+  prehidingStyle: "#container { opacity: 0 !important }"
+```
+
+
+### `authoringModeEnabled`
  **Type:** Boolean\
  **Required:** No\
  **Default Value:** `false`
  
-Enables personalization component authoring mode, which will ensure that no personalization content will be retrieved from the backend and no data collection requests will be initiated from within the personalization component.
-For Adobe Target Visual Experience Composer this option should be intialized to something like:
+Enables the personalization component authoring mode, which will ensure that no personalization content will be retrieved from the server and no data collection requests will be initiated from within the personalization component.
+For Adobe Target Visual Experience Composer this option should be initialized to something like:
 ```javascript
-  authoringMode: document.location.href.indexOf("mboxEdit") !== -1
+  authoringModeEnabled: document.location.href.indexOf("mboxEdit") !== -1
 ```
-If other WYSIWYG tools are used to create personalized experiences and content then this option should be intialized accordingly.
+If other WYSIWYG tools are used to create personalized experiences and content, then this option should be initialized accordingly.
