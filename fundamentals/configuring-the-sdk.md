@@ -44,19 +44,19 @@ Your assigned Experience Cloud organization ID.
 
 The domain that will be used to interact with Adobe Services. This is only used if you have a first party domain (CNAME) that proxies requests to Adobe's edge infrastructure.
 
-### `log`
+### `logEnabled`
 **Type:** Boolean\
 **Required:** No\
 **Default Value:** `false`
 
 Indicates whether debugging messages should be displayed in the browser's JavaScript console. This setting is sticky and will persist until you change it. 
 
-### `suppressErrors`
+### `errorsEnabled`
  **Type:** Boolean\
  **Required:** No\
  **Default Value:** `false`
 
-Indicates whether errors should be suppressed. As described in [Executing Commands](executing-commands.md), _uncaught_ errors will be logged to the developer console, regardless of whether logging is enabled in Alloy. By setting `suppressErrors` to `true`, promises returned from Alloy will never be rejected, though errors will still be logged to the console if logging is enabled in Alloy. 
+Indicates whether errors should be suppressed. As described in [Executing Commands](executing-commands.md), _uncaught_ errors will be logged to the developer console, regardless of whether logging is enabled in Alloy. By setting `errorsEnabled` to `true`, promises returned from Alloy will never be rejected, though errors will still be logged to the console if logging is enabled in Alloy. 
 
 ## Privacy Options
 
