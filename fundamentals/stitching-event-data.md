@@ -45,7 +45,7 @@ As with all commands, a promise will be returned because you may be executing th
 var stitchIdPromise = alloy("getStitchId");
 
 alloy("event", {
-  "isViewStart": true,
+  "viewStart": true,
   "data": {
     "key": "value"
   },

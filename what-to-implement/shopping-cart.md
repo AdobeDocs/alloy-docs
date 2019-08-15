@@ -55,7 +55,7 @@ Here is an example of how this data would be sent in.
 
 ```javascript
 adbe('event', {
-  "isViewStart": true,
+  "viewStart": true,
 	"data": {
 		"type": "Add to Cart",
 		"products": [
@@ -92,7 +92,7 @@ Purchase events add the following attributes
 
 ```javascript
 adbe('event', {
-  "isViewStart": true,
+  "viewStart": true,
 	"data": {
 		"type": "Add to Cart",
 		"products": [
