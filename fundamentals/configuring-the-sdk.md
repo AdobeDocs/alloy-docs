@@ -94,3 +94,28 @@ For Adobe Target Visual Experience Composer this option should be initialized to
   authoringModeEnabled: document.location.href.indexOf("mboxEdit") !== -1
 ```
 If other WYSIWYG tools are used to create personalized experiences and content, then this option should be initialized accordingly.
+
+## Audiences Options
+
+### `destinationsEnabled`
+ **Type:** Boolean\
+ **Required:** No\
+ **Default Value:** `true`
+ 
+Enables the destinations feature, which allows the firing of URLs and setting of cookies based on segment qualification.
+
+## Identity Options
+
+### `idSyncsEnabled`
+ **Type:** Boolean\
+ **Required:** No\
+ **Default Value:** `true`
+ 
+Enables the id syncs feature, which allows the firing of URLs to synchronize the Adobe unique user ID with the unique user ID of a third party datasource.
+
+### `idSyncContainerId`
+ **Type:** Nonnegative Integer\
+ **Required:** No\
+ **Default Value:** none
+ 
+The container ID that specifies which ID syncs will be fired.
