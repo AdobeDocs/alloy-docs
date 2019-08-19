@@ -111,11 +111,11 @@ Enables the destinations feature, which allows the firing of URLs and setting of
  **Required:** No\
  **Default Value:** `true`
  
-Enables the id syncs feature, which allows the firing of URLs to synchronize the Adobe unique user ID with the unique user ID of a third party datasource.
+Enables the ID syncs feature, which allows the firing of URLs to synchronize the Adobe unique user ID with the unique user ID of a third party data source.
 
 ### `idSyncContainerId`
- **Type:** Nonnegative Integer\
+ **Type:** Number\
  **Required:** No\
  **Default Value:** none
  
-The container ID that specifies which ID syncs will be fired.
+The container ID that specifies which ID syncs will be fired. This is a nonnegative integer that can be obtained from your consultant.
