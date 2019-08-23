@@ -22,7 +22,7 @@ The height in pixel of the screen
 
 ### Screen Width
 
-**Path in Payload:** `events[].device.screenHeight`  
+**Path in Payload:** `events[].device.screenWidth`  
 **Example:** `1440`  
 
 The width of the screen (in pixels)  
@@ -59,8 +59,9 @@ The width of the browser's content area (in pixels).
 
 The type of connection used to access the web page.  
 
-### Environement Typethis to Browser  
+### Environement Type
 
+Browser  
 **Path in Payload:**`events[].environment.type`  
 **Possible Values:** `browser`  
 
