@@ -63,7 +63,7 @@ Indicates whether errors should be suppressed. As described in [Executing Comman
  **Required:** No\
  **Default Value:** `["web", "device", "environment", "placeContext"]`
 
-Indicates which context catagories to collect automatically as described in [Automatic Information](reference/automatic-information.md).  If this configuration is not specified all of the categories will be used by default.
+Indicates which context catagories to collect automatically as described in [Automatic Information](reference/automatic-information.md).  If this configuration is not specified, all of the categories will be used by default.
 
 ## Privacy Options
 

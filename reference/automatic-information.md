@@ -7,7 +7,7 @@ description: >-
 This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
-The Adobe Experience Cloud SDK collects a number of pieces of information automatically without any special configuration, however, they can be disabled if needed using the `context` option in the `configure` command [See Configuring the SDK](fundamentals/configuring-the-sdk.md). Below is a list of those pieces of information. (The name in parentheses indicates the string to use when configuring the context)
+The Adobe Experience Cloud SDK collects a number of pieces of information automatically without any special configuration, however, they can be disabled if needed using the `context` option in the `configure` command [See Configuring the SDK](fundamentals/configuring-the-sdk.md). Below is a list of those pieces of information. The name in parentheses indicates the string to use when configuring the context.
 
 ## Device (`device`)
 
