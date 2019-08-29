@@ -62,6 +62,21 @@ alloy("event", {
 
 Once data is sent, the server will respond with personalized content, among other things. This personalized content will be automatically rendered into your view. Link handlers will also be automatically attached to the new view's content.
 
+## Using the sendBeacon API
+
+It can be tricky to send event data just before the web page user has navigated away. If the request takes too long, the browser may cancel the request. Some browsers have implemented a web standard API called `sendBeacon` to allow data to be more easily be collected during this time. When using `sendBeacon`, the browser will make the web request in the global browsing context. This means the browser makes the beacon request in the background and does not hold up the page navigation. To tell Alloy to use `sendBeacon` add the option `"documentUnloading": true` to the event command.  Here is an example:
+
+```javascript
+alloy("event", {
+  "documentUnloading": true,
+  "data": {
+    "key": "value"
+  }
+});
+```
+
+Browsers have imposed limits to the amount of data that can be sent with `sendBeacon` at one time. In many browsers the limit is 64K. If the browser rejects the event because the payload is too large, Alloy will fallback to using its normal transport method (e.g. fetch).
+
 ## Handling Responses from Events
 
 If you want to handle a response from an event you can promise to the event like so. 
