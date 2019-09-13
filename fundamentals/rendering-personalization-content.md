@@ -13,10 +13,16 @@ By default, the SDK will automatically take care of rendering personalization co
 
 ```javascript
 alloy("event", {
-  viewStart: true,
-  data: {
-    "type": "page-view",
-    "key": "value"
+  "viewStart": true,
+  "xdm": {
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    }
   }
 });
 ```
