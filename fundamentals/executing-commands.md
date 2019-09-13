@@ -72,7 +72,7 @@ Using promises as options will delay command execution until the promises are re
 
 If you are waiting on a piece of data to become available before executing a command, you may instead provide a promise within the `options` object you pass to the SDK. The promise will represent the eventually-resolved value. When a promise is provided, the SDK will internally wait for your promise to be resolved and the promise's resolved value will be used.
 
-For example, if you would like to record an ecommerce transaction but are still waiting for a payment details, you could execute the `event` command (covered in more detail in [Tracking Events](tracking-events.md)) as follows:
+For example, if you would like to record an ecommerce transaction but are still waiting for payment details, you could execute the `event` command (covered in more detail in [Tracking Events](tracking-events.md)) as follows:
 
 ```javascript
 var paymentsPromise = new Promise(function(resolve) {

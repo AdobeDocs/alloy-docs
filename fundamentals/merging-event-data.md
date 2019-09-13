@@ -55,7 +55,7 @@ If you are sending data about a particular event to third-party providers, you m
 
 ## Generating an Event Merge ID
 
-The event merge ID value can be any string you choose, but remember that all events sent using the same ID will be reported as a single event, so be cognizant of enforcing uniqueness when events should not be merged. If you would like the SDK to generate a unique event merge ID on your behalf (following the widely-adopted [UUID v4 specification](https://www.ietf.org/rfc/rfc4122.txt)), you may use the `getEventMergeId` command to do so.
+The event merge ID value can be any string you choose, but remember that all events sent using the same ID will be reported as a single event, so be cognizant of enforcing uniqueness when events should not be merged. If you would like the SDK to generate a unique event merge ID on your behalf (following the widely-adopted [UUID v4 specification](https://www.ietf.org/rfc/rfc4122.txt)), you may use the `createEventMergeId` command to do so.
 
 As with all commands, a promise will be returned because you may be executing the command before the SDK has finished loading. The promise will be resolved with a unique event merge ID as soon as possible. For your convenience, you may pass the promise as the `eventMergeId` value when executing event commands and the SDK will appropriately wait for the promise to be resolved before sending data to the server. This is demonstrated as follows:
 
