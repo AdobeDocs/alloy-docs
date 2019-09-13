@@ -9,36 +9,34 @@ This documentation is for a library and a service that is in Alpha and should no
 
 # Tracking Events
 
-In order to send event data to the Adobe Experience Cloud, you will want to use the `event` command.
+In order to send event data to the Adobe Experience Cloud, you will want to use the `event` command. The `event` command is the primary way of sending data to the Experience Cloud as well as retrieving personalized content, identities, and audience destinations.
 
-Any data you would like to be part of your analytics, personalization, audiences, or destinations should be sent using the `data` key.
+Data being sent to Adobe Experience Cloud falls into two categories: (1) XDM data and (2) non-XDM data.
 
-The `data` key will accept any XDM keys and any arbitrary key value pairs you would like to send and can be used in any of the use cases \(analytics personalization, audiences, destinations, etc\).
+## Sending XDM Data
 
-```javascript
-alloy("event", {
-  "data": {
-    "key":"value"
-  },
-});
-```
+XDM data is an object whose content and structure matches a schema you have created within the Adobe Experience Platform. [Learn more about how to create a schema.](https://www.adobe.io/apis/experienceplatform/home/tutorials/alltutorials.html#!api-specification/markdown/narrative/tutorials/schema_editor_tutorial/schema_editor_tutorial.md)
 
-{% hint style="warning" %}
-Be sure to understand how to track different types of events as outlined below. Failing to do so may result in a loss of functionality.
-{% endhint %}
-
-## Event Types
-
-For each event, you may pass in a `type` property indicating the type of event that occurred as follows:
+Any XDM data you would like to be part of your analytics, personalization, audiences, or destinations should be sent using the `xdm` option.
 
 ```javascript
 alloy("event", {
-  "data": {
-    "type": "somethingOccurred",
-    "key":"value"
-  },
+  "xdm": {
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    }
+  }
 });
-```
+``` 
+
+### Sending Non-XDM Data
+
+Currently, sending data that does not match an XDM schema is unsupported. Support is planned for a future date. 
 
 ### Starting a View
 
@@ -54,8 +52,15 @@ The event with `viewStart` set to `true` is the primary mechanism for sending da
 ```javascript
 alloy("event", {
   "viewStart": true,
-  "data": {
-    "key": "value"
+  "xdm": {
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    }
   }
 });
 ```
@@ -69,34 +74,47 @@ It can be tricky to send event data just before the web page user has navigated 
 ```javascript
 alloy("event", {
   "documentUnloading": true,
-  "data": {
-    "key": "value"
+  "xdm": {
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    }
   }
 });
 ```
 
-Browsers have imposed limits to the amount of data that can be sent with `sendBeacon` at one time. In many browsers the limit is 64K. If the browser rejects the event because the payload is too large, Alloy will fall back to using its normal transport method (e.g. fetch).
+Browsers have imposed limits to the amount of data that can be sent with `sendBeacon` at one time. In many browsers, the limit is 64K. If the browser rejects the event because the payload is too large, Alloy will fall back to using its normal transport method (e.g., fetch).
 
 ## Handling Responses from Events
 
-If you want to handle a response from an event you can promise to the event like so. 
+If you want to handle a response from an event, you can be notified of a success or failure as follows: 
 
 ```javascript
 alloy("event", {
   "viewStart": true,
-  "data": {
-    "key": "value"
+  "xdm": {
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    }
   }
 }).then(function(result) {
     // Tracking the event succeeded.
   })
   .catch(function(error) {
     // Tracking the event failed.
-  })
-;
+  });
 ```
 
-When tracking an event succeeds, a `result` object is provided. This object has the following properties:
+When an event succeeds, a `result` object is provided. This object has the following properties:
 
  * `requestBody` - This the body that was sent on the request to the server.
  * `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by the SDK (for example, when `viewStart` is set to `true`).
