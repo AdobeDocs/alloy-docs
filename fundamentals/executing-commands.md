@@ -66,6 +66,10 @@ If the promise is rejected and you have not added a `catch` call, the error will
 
 ## Providing Promises as Options
 
+{% hint style="warning" %}
+Using promises as options will delay command execution until the promises are resolved. If the user navigates away from the page or closes the browser during this time, the command will not have been executed and may result in corresponding data being lost. Also, if a command's execution would result in personalized content being retrieved from the server, the content retrieval and rendering would likewise be delayed. 
+{% endhint %}
+
 If you are waiting on a piece of data to become available before executing a command, you may instead provide a promise within the `options` object you pass to the SDK. The promise will represent the eventually-resolved value. When a promise is provided, the SDK will internally wait for your promise to be resolved and the promise's resolved value will be used.
 
 For example, if you would like to record an ecommerce transaction but are still waiting for a payment details, you could execute the `event` command (covered in more detail in [Tracking Events](tracking-events.md)) as follows:

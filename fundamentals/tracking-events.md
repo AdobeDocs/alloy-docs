@@ -9,13 +9,13 @@ This documentation is for a library and a service that is in Alpha and should no
 
 # Tracking Events
 
-In order to send event data to the Adobe Experience Cloud, you will want to use the `event` command. The event command not only is important for sending data to Adobe Experience Cloud, but also allows the Adobe Experience Cloud to respond with personalized content, identities, and audience destinations.
+In order to send event data to the Adobe Experience Cloud, you will want to use the `event` command. The `event` command is the primary way of sending data to the Experience Cloud as well as retrieving personalized content, identities, and audience destinations.
 
 Data being sent to Adobe Experience Cloud falls into two categories: (1) XDM data and (2) non-XDM data.
 
 ## Sending XDM Data
 
-XDM data is an object who's content and structure matches a schema you have created within the Adobe Experience Platform. [Learn more about how to create a schema.](https://www.adobe.io/apis/experienceplatform/home/tutorials/alltutorials.html#!api-specification/markdown/narrative/tutorials/schema_editor_tutorial/schema_editor_tutorial.md)
+XDM data is an object whose content and structure matches a schema you have created within the Adobe Experience Platform. [Learn more about how to create a schema.](https://www.adobe.io/apis/experienceplatform/home/tutorials/alltutorials.html#!api-specification/markdown/narrative/tutorials/schema_editor_tutorial/schema_editor_tutorial.md)
 
 Any XDM data you would like to be part of your analytics, personalization, audiences, or destinations should be sent using the `xdm` option.
 
@@ -96,8 +96,15 @@ If you want to handle a response from an event, you can be notified of a success
 ```javascript
 alloy("event", {
   "viewStart": true,
-  "data": {
-    "key": "value"
+  "xdm": {
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    }
   }
 }).then(function(result) {
     // Tracking the event succeeded.
