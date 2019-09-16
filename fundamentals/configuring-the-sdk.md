@@ -13,7 +13,8 @@ Configuration for the SDK is done with the `configure` command. This should _alw
 
 ```javascript
 alloy("configure", {
-  "propertyId": "ebebf826-a01f-4458-8cec-ef61de241c93"
+  "propertyId": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg"
 });
 ```
 
