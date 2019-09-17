@@ -14,6 +14,7 @@ The `configure` command allows you to enable logging. If you set the `log` optio
 ```javascript
 alloy("configure", {
   "propertyId": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg",
   "log": true
 });
 ```
