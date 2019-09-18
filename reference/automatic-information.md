@@ -7,7 +7,7 @@ description: >-
 This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
-The Adobe Experience Cloud SDK collects a number of pieces of information automatically without any special configuration, however, they can be disabled if needed using the `context` option in the `configure` command [See Configuring the SDK](fundamentals/configuring-the-sdk.md). Below is a list of those pieces of information. The name in parentheses indicates the string to use when configuring the context.
+The Adobe Experience Cloud SDK collects a number of pieces of information automatically without any special configuration, however, they can be disabled if needed using the `context` option in the `configure` command [See Configuring the SDK](../fundamentals/configuring-the-sdk.md). Below is a list of those pieces of information. The name in parentheses indicates the string to use when configuring the context.
 
 ## Device (`device`)
 
@@ -55,7 +55,7 @@ The height of the browser's content area (in pixels).
 | -- | -- |
 | `events[].environment.browserDetails.viewportWidth` | `642` |
 
-The width of the browser's content area (in pixels). 
+The width of the browser's content area (in pixels).
 
 ### Connection Type
 
@@ -73,7 +73,7 @@ Browser
 | -- | -- |
 | `events[].environment.type` | `browser` |
 
-The type of evironment the experience was surface through. The Adobe Expereience Platform SDK for Javascript will always set Browser.
+The type of evironment the experience was surfaced through. The Adobe Experience Platform SDK for Javascript will always set Browser.
 
 ## Place Context (`placeContext`)
 
@@ -85,7 +85,7 @@ Information about the location of the end user.
 | -- | -- |
 | `events[].placeContext.localTime` | `2019-08-07T15:47:17.129-07:00` |
 
-Local timestamp for the end user in simplified extended ISO format [ISO 8601](https://tools.ietf.org/html/rfc3339#section-5.6). 
+Local timestamp for the end user in simplified extended ISO format [ISO 8601](https://tools.ietf.org/html/rfc3339#section-5.6).
 
 ### Local Timezone Offset
 

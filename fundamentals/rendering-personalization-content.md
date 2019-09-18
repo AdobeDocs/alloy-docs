@@ -1,15 +1,15 @@
 ---
 description: >-
-  Learn how to render personalization content. 
+  Learn how to render personalization content.
 ---
 
 {% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
 ## Rendering Personalization Content
 
-By default, the SDK will automatically take care of rendering personalization content. Whenever you send an event to the server, you can also force the SDK to automatically retrieve and render personalization content by setting `viewStart` to `true` as an option on the event.
+The SDK will automatically take care of rendering personalization content when you send an event to the server and set `viewStart` to `true` as an option on the event.
 
 ```javascript
 alloy("event", {
@@ -67,7 +67,7 @@ The preprocessing phase kicks in once the SDK has received the personalized cont
 
 ### Rendering
 
-Once all the personalization content has been rendered successfully or if there was any error all previously hidden elements are shown to make sure that there are no hidden elements on the page that were hidden by the SDK. 
+Once all the personalization content has been rendered successfully or if there was any error all previously hidden elements are shown to make sure that there are no hidden elements on the page that were hidden by the SDK.
 
 ## Managing flicker when SDK is loaded asynchronously
 

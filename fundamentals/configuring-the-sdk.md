@@ -4,7 +4,7 @@ description: >-
 ---
 
 {% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
 # Configuring the SDK
@@ -52,7 +52,7 @@ The domain that will be used to interact with Adobe Services. This is only used 
 | -- | -- | -- |
 | Boolean | No | `false` |
 
-Indicates whether debugging messages should be displayed in the browser's JavaScript console. This setting is sticky and will persist until you change it. 
+Indicates whether debugging messages should be displayed in the browser's JavaScript console. This setting is sticky and will persist until you change it.
 
 ### `errorsEnabled`
 
@@ -60,7 +60,7 @@ Indicates whether debugging messages should be displayed in the browser's JavaSc
 | -- | -- | -- |
 | Boolean | No | `true` |
 
-Indicates whether errors should be suppressed. As described in [Executing Commands](executing-commands.md), _uncaught_ errors will be logged to the developer console, regardless of whether logging is enabled in Alloy. By setting `errorsEnabled` to `false`, promises returned from Alloy will never be rejected, though errors will still be logged to the console if logging is enabled in Alloy. 
+Indicates whether errors should be suppressed. As described in [Executing Commands](executing-commands.md), _uncaught_ errors will be logged to the developer console, regardless of whether logging is enabled in Alloy. By setting `errorsEnabled` to `false`, promises returned from Alloy will never be rejected, though errors will still be logged to the console if logging is enabled in Alloy.
 
 ### `context`
 
@@ -68,7 +68,7 @@ Indicates whether errors should be suppressed. As described in [Executing Comman
 | -- | -- | -- |
 | Array of Strings | No | `["web", "device", "environment", "placeContext"]` |
 
-Indicates which context catagories to collect automatically as described in [Automatic Information](reference/automatic-information.md).  If this configuration is not specified, all of the categories will be used by default.
+Indicates which context categories to collect automatically as described in [Automatic Information](../reference/automatic-information.md).  If this configuration is not specified, all of the categories will be used by default.
 
 ## Privacy Options
 
@@ -77,7 +77,7 @@ Indicates which context catagories to collect automatically as described in [Aut
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | Boolean | No | `false` |
- 
+
 Enables the opt-in feature, which allows work to be queued until the user provides his/her opt-in preferences. Once the user's preferences have been provided, work will either proceed or be aborted based on the user's preferences. See [Supporting Opt-In](supporting-opt-in.md) for more information.
 
 ## Personalization Options
@@ -87,7 +87,7 @@ Enables the opt-in feature, which allows work to be queued until the user provid
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | String | No | none |
- 
+
 Used to create a CSS style definition that will hide content areas of your web page while personalized content is loaded from the server. If this option is not provided, the SDK will not attempt to hide any content areas while personalized content is loaded, potentially resulting in "flicker".
 
 For example, if you had an element on your web page with an ID of `container` whose default content you would like to hide while personalized content is being loaded from the server, an example of a prehiding style would be as follows:
@@ -102,7 +102,7 @@ For example, if you had an element on your web page with an ID of `container` wh
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | Boolean | No | `false` |
- 
+
 Enables the personalization component authoring mode, which will ensure that no personalization content will be retrieved from the server and no data collection requests will be initiated from within the personalization component.
 For Adobe Target Visual Experience Composer this option should be initialized to something like:
 ```javascript
@@ -117,7 +117,7 @@ If other WYSIWYG tools are used to create personalized experiences and content, 
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | Boolean | No | `true` |
- 
+
 Enables the destinations feature, which allows the firing of URLs and setting of cookies based on segment qualification.
 
 ## Identity Options
@@ -127,7 +127,7 @@ Enables the destinations feature, which allows the firing of URLs and setting of
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | Boolean | No | `true` |
- 
+
 Enables the ID syncs feature, which allows the firing of URLs to synchronize the Adobe unique user ID with the unique user ID of a third party data source.
 
 ### `idSyncContainerId`
@@ -135,5 +135,5 @@ Enables the ID syncs feature, which allows the firing of URLs to synchronize the
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | Number | No | none |
- 
+
 The container ID that specifies which ID syncs will be fired. This is a nonnegative integer that can be obtained from your consultant.
