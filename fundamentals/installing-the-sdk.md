@@ -1,15 +1,15 @@
 ---
 description: >-
-  Learn how to install the SDK. 
+  Learn how to install the SDK.
 ---
 
 {% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
+This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 {% endhint %}
 
 # Installing the SDK
 
-The first step in implemented the Adobe Experience Platform SDK is to copy and paste the following "base code" as high as possible in the `<head>` tag of your HTML:
+The first step in implementing the Adobe Experience Platform SDK is to copy and paste the following "base code" as high as possible in the `<head>` tag of your HTML:
 
 ```markup
 <script>
