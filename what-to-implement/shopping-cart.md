@@ -86,9 +86,9 @@ Purchase events add the following attributes
 
 * `purchaseId` - This is the ID for the order or the order number.
 * `discounts` - This is an array of order level discounts that are applied.
-* `discountName` - The friendly name of the discount.
-* `discountType` - The type of discount. \(e.g., percent off, BOGO, Freeshipping, etc\)
-* `discountAmount` - The amount this discount removes from the order.
+  * `discountName` - The friendly name of the discount.
+  * `discountType` - The type of discount. \(e.g., percent off, BOGO, Freeshipping, etc\)
+  * `discountAmount` - The amount this discount removes from the order.
 
 ```javascript
 alloy("event", {
