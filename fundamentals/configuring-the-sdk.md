@@ -136,13 +136,13 @@ Enables the destinations feature, which allows the firing of URLs and setting of
 
 ## Identity Options
 
-### `idSyncsEnabled`
+### `idSyncEnabled`
 
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | Boolean | No | `true` |
 
-Enables the ID syncs feature, which allows the firing of URLs to synchronize the Adobe unique user ID with the unique user ID of a third party data source.
+Enables the ID sync feature, which allows the firing of URLs to synchronize the Adobe unique user ID with the unique user ID of a third party data source.
 
 ### `idSyncContainerId`
 
