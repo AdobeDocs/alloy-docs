@@ -70,6 +70,20 @@ Indicates whether errors should be suppressed. As described in [Executing Comman
 
 Indicates which context categories to collect automatically as described in [Automatic Information](../reference/automatic-information.md).  If this configuration is not specified, all of the categories will be used by default.
 
+### `clickCollectionEnabled`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| Boolean | No | `true` |
+
+Indicates whether data associated with link clicks should be automatically collected or not. For clicks that qualify as link clicks, the following [Web Interaction](https://github.com/adobe/xdm/blob/master/docs/reference/context/webinteraction.schema.md) data is collected:
+
+| **Property** |  |
+| -- | -- |
+| Link Name | Name determined by the link context |
+| Link URL | Normalized URL |
+| Link Type | Set to download, exit, or other |
+
 ## Privacy Options
 
 ### `optInEnabled`
