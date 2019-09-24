@@ -76,13 +76,13 @@ Indicates which context categories to collect automatically as described in [Aut
 | -- | -- | -- |
 | Boolean | No | `true` |
 
-Indicates whether data associated with link clicks should be collected or not. For clicks that qualify as link clicks the following [Web Interaction](https://github.com/adobe/xdm/blob/master/docs/reference/context/webinteraction.schema.md) data is collected:
+Indicates whether data associated with link clicks should be automatically collected or not. For clicks that qualify as link clicks, the following [Web Interaction](https://github.com/adobe/xdm/blob/master/docs/reference/context/webinteraction.schema.md) data is collected:
 
 | **Property** |  |
 | -- | -- |
 | Link Name | Name determined by the link context |
 | Link URL | Normalized URL |
-| Link Type | Either set to download, exit, or other |
+| Link Type | Set to download, exit, or other |
 
 ## Privacy Options
 
