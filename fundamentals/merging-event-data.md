@@ -57,52 +57,57 @@ If you are sending data about a particular event to third-party providers, you m
 
 The event merge ID value can be any string you choose, but remember that all events sent using the same ID will be reported as a single event, so be cognizant of enforcing uniqueness when events should not be merged. If you would like the SDK to generate a unique event merge ID on your behalf (following the widely-adopted [UUID v4 specification](https://www.ietf.org/rfc/rfc4122.txt)), you may use the `createEventMergeId` command to do so.
 
-As with all commands, a promise will be returned because you may be executing the command before the SDK has finished loading. The promise will be resolved with a unique event merge ID as soon as possible. For your convenience, you may pass the promise as the `eventMergeId` value when executing event commands and the SDK will appropriately wait for the promise to be resolved before sending data to the server. This is demonstrated as follows:
-
-```javascript
-var eventMergeIdPromise = alloy("createEventMergeId");
-
-alloy("event", {
-  "xdm": {
-    "commerce": {
-      "order": {
-        "purchaseID": "a8g784hjq1mnp3",
-        "purchaseOrderNumber": "VAU3123",
-        "currencyCode": "USD",
-        "priceTotal": 999.98
-      }
-    },
-    "eventMergeId": eventMergeIdPromise
-  }
-});
-
-// Time passes and more data becomes available
-
-alloy("event", {
-  "xdm": {
-    "commerce": {
-      "order": {
-        "payments": [
-          {
-            "transactionID": "TR426941",
-            "paymentAmount": 999.98,
-            "paymentType": "credit_card",
-            "currencyCode": "USD"
-          }
-        ]
-      }
-    },
-    "eventMergeId": eventMergeIdPromise
-  }
-});
-```
-
-If you'd like to access the event merge ID (for example, to send to a third-party provider), you can explicitly wait for the promise to be resolved:
+As with all commands, a promise will be returned because you may be executing the command before the SDK has finished loading. The promise will be resolved with a unique event merge ID as soon as possible. You can wait for the promise to be resolved before sending data to the server as follows:
 
 ```javascript
 var eventMergeIdPromise = alloy("createEventMergeId");
 
 eventMergeIdPromise.then(function(eventMergeId) {
+  alloy("event", {
+    "xdm": {
+      "commerce": {
+        "order": {
+          "purchaseID": "a8g784hjq1mnp3",
+          "purchaseOrderNumber": "VAU3123",
+          "currencyCode": "USD",
+          "priceTotal": 999.98
+        }
+      },
+      "eventMergeId": eventMergeId
+    }
+  });
+});
+
+// Time passes and more data becomes available
+
+eventMergeIdPromise.then(function(eventMergeId) {
+  alloy("event", {
+    "xdm": {
+      "commerce": {
+        "order": {
+          "payments": [
+            {
+              "transactionID": "TR426941",
+              "paymentAmount": 999.98,
+              "paymentType": "credit_card",
+              "currencyCode": "USD"
+            }
+          ]
+        }
+      },
+      "eventMergeId": eventMergeId
+    }
+  });
+});
+```
+
+You can follow this same pattern if you would like access the event merge ID for other reasons (for example, to send it to a third-party provider):
+
+```javascript
+var eventMergeIdPromise = alloy("createEventMergeId");
+
+eventMergeIdPromise.then(function(eventMergeId) {
+  // send event merge ID to a third-party provider
   console.log(eventMergeId);
 });
 ```
