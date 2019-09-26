@@ -156,6 +156,6 @@ The container ID that specifies which ID syncs will be fired. This is a nonnegat
 
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
-| Boolean | No | none |
+| Boolean | No | true |
 
 Enables the setting of Adobe third-party cookies.
