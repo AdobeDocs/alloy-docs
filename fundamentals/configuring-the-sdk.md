@@ -151,3 +151,11 @@ Enables the ID sync feature, which allows the firing of URLs to synchronize the 
 | Number | No | none |
 
 The container ID that specifies which ID syncs will be fired. This is a nonnegative integer that can be obtained from your consultant.
+
+### `thirdPartyCookiesEnabled`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| Boolean | No | none |
+
+Enables the setting of Adobe third-party cookies.
