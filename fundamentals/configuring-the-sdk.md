@@ -151,3 +151,11 @@ Enables the ID sync feature, which allows the firing of URLs to synchronize the 
 | Number | No | none |
 
 The container ID that specifies which ID syncs will be fired. This is a nonnegative integer that can be obtained from your consultant.
+
+### `thirdPartyCookiesEnabled`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| Boolean | No | true |
+
+Enables the setting of Adobe third-party cookies. The SDK has the ability to persist the visitor ID in a third party context to enable the same visitor ID to be used across site. This is useful if you have multiple site or you want to share data with partners; however, sometimes this is not desired for privacy reasons.
