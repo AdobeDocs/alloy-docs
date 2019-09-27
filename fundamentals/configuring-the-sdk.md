@@ -158,4 +158,4 @@ The container ID that specifies which ID syncs will be fired. This is a nonnegat
 | -- | -- | -- |
 | Boolean | No | true |
 
-Enables the setting of Adobe third-party cookies. The SDK has the ability to turn persist the visitor ID in a 3rd party context to enable the same visitor ID to be used across sites. This is useful if you have multiple site or you want to share data with partners, However, sometimes this is not desired for privacy reasons.
+Enables the setting of Adobe third-party cookies. The SDK has the ability to persist the visitor ID in a third party context to enable the same visitor ID to be used across site. This is useful if you have multiple site or you want to share data with partners; however, sometimes this is not desired for privacy reasons.
