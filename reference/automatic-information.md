@@ -57,14 +57,6 @@ The height of the browser's content area (in pixels).
 
 The width of the browser's content area (in pixels).
 
-### Connection Type
-
-| **Path in Payload:**  | **Example:** |
-| -- | -- |
-| `events[].environment.connectionType` | `4g` |
-
-The type of connection used to access the web page.  
-
 ### Environement Type
 
 Browser
