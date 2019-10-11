@@ -29,6 +29,8 @@ alloy("syncIdsByUrl", {
 });
 ```
 
+## General Options
+
 The `syncIdsByUrl` command supports the following option:
 
 ### `idSyncs`
