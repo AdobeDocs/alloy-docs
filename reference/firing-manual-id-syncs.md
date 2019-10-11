@@ -9,7 +9,7 @@ This documentation is for a library and a service that is in Alpha and should no
 
 # Firing Manual ID Syncs
 
-The SDK can synchronize IDs with other applications using a feature called ID syncs. This happens automatically and is configured from within Adobe's tools. Sometimes, it may be useful to fire your own customized ID sync URLs manually in addition to those that come from the server.
+The SDK can synchronize IDs with other applications using a feature called ID syncs. This can happen automatically and is configured from within Adobe's tools. An ID sync creates a link between the ID adobe uses and another system so data can be exchanged between the two systems.  Sometimes, it may be useful to fire your own customized ID sync URLs manually in addition to those that come from the server.
 
 ```js
 alloy("syncIdsByUrl", {
@@ -34,8 +34,8 @@ The `syncIdsByUrl` command supports the following option:
 ### `idSyncs`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Array | No | none |
+| -------- | ------------ | ----------------- |
+| Array    | No           | none              |
 
 An array of ID sync objects.
 
@@ -44,47 +44,47 @@ Each ID sync object is structured as follows:
 ### `type`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| String | Yes | none |
+| -------- | ------------ | ----------------- |
+| String   | Yes          | none              |
 
 "url" must be specified to distinguish it from other types such as "cookie".
 
 ### `id`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Number | Yes | none |
+| -------- | ------------ | ----------------- |
+| Number   | Yes          | none              |
 
 Data source ID (integer >= 0). This should be obtained from your consultant in order to avoid collisions with other data source IDs.
 
 ### `spec`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Object | Yes | none |
+| -------- | ------------ | ----------------- |
+| Object   | Yes          | none              |
 
 A specifications object.
 
 ### `spec.url`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| String | Yes | none |
+| -------- | ------------ | ----------------- |
+| String   | Yes          | none              |
 
 The custom ID sync URL. It usually contains the data source unique user ID.
 
 ### `spec.hideReferrer`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Boolean | Yes | none |
+| -------- | ------------ | ----------------- |
+| Boolean  | Yes          | none              |
 
 `true` to make the document.referrer of the network request blank. `false` to leave it populated.
 
 ### `spec.ttlMinutes`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Number | No | 10080 |
+| -------- | ------------ | ----------------- |
+| Number   | No           | 10080             |
 
 Delay (integer), in minutes, before synchronizing IDs again. Minimum is 10080 (7 days).
