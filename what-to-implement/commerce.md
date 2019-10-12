@@ -107,15 +107,16 @@ The product list intended to be sent whenever the above items are set to indicat
 * [SKU](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md) (_Highly Recommended_) -- Store Keeping Unit. It is the unique identifier for the product.
 * [currencyCode](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmcurrencycode) (_optional_) -- the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency for for the product. This is only useful when you can have products with different currency codes and when it applies like when there is a purcahse or add to cart.
 * [productName](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmname) (_Highly Recommended_) -- This is set to the display name or human readable name of the product.
-* [priceTotal](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmpricetotal) (_Highly Recommended_) -- Should only be set when applicable. For example, It may not be possible to set on `productView` since different variations of the product can have different prices but on an `productListAdds`
+* [priceTotal](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmpricetotal) (_Highly Recommended_) -- Should only be set when applicable. For example, It may not be possible to set on `productView` since different variations of the product can have different prices but on an `productListAdds`.
 * [product](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmproduct) (_Highly Recommended_) -- The XDM id for the product.
-* [productAddMethod](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmproductaddmethod) (_Highly Recommended_) -- The method that was used to add a product item to the list by the visitor. Set with product list add metrics. Should only be used when a product is added to the list. Examples include `add to cart button`, `quick add` and `upsell`. 
+* [productAddMethod](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmproductaddmethod) (_Highly Recommended_) -- The method that was used to add a product item to the list by the visitor. Set with product list add metrics. Should only be used when a product is added to the list. Examples include `add to cart button`, `quick add` and `upsell`.
 * [quantity](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmquantity) (_Highly Recommended) -- The number of units the customer has indicated they require of the product. Should be set on `productListAdds`, `productListRemoves`, `purchases`, `saveForLaters`, etc.
 
 ## Examples
 
 ---
 `productView` event
+
 ```javascript
 alloy("event", {
   "xdm": {
