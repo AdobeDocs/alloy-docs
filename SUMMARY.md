@@ -22,4 +22,5 @@
 ## Reference
 
 * [Automatically Collected Information](reference/automatic-information.md)
+* [Manually Fireing ID Syncs](reference/firing-manual-id-syncs.md)
 * [Retrieving Library Information](reference/retrieving-library-information.md)
