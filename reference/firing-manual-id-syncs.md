@@ -9,7 +9,7 @@ This documentation is for a library and a service that is in Alpha and should no
 
 # Firing Manual ID Syncs
 
-The SDK can synchronize IDs with other applications using a feature called ID syncs. This will happen automatically and is configured from within Adobe's tools. An ID sync creates a link between the ID adobe uses and another system so data can be exchanged between the two systems. This is done by making a request to a domain with both IDs present in the URL. Sometimes, it may be useful to fire your own customized ID sync URLs manually in addition to those that come from the server.
+The SDK can synchronize IDs with other applications using a feature called ID syncs. This will happen automatically and is configured from within Adobe's tools. An ID sync creates a link between the ID Adobe uses and another system so data can be exchanged between the two systems. This is done by making a request to a domain with both IDs present in the URL. Sometimes, it may be useful to fire your own customized ID sync URLs manually in addition to those that come from the server.
 
 ```js
 alloy("syncIdsByUrl", {
