@@ -109,7 +109,130 @@ The product list intended to be sent whenever the above items are set to indicat
 * [productName](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmname) (_Highly Recommended_) -- This is set to the display name or human readable name of the product.
 * [priceTotal](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmpricetotal) (_Highly Recommended_) -- Should only be set when applicable. For example, It may not be possible to set on `productView` since different variations of the product can have different prices but on an `productListAdds`
 * [product](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmproduct) (_Highly Recommended_) -- The XDM id for the product.
-* [productAddMethod](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmproductaddmethod) (_Highly Recommended_) -- The method that was used to add a product item to the list by the visitor. Set with product list add metrics. Should only be used when a product is added to the list.
+* [productAddMethod](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmproductaddmethod) (_Highly Recommended_) -- The method that was used to add a product item to the list by the visitor. Set with product list add metrics. Should only be used when a product is added to the list. Examples include `add to cart button`, `quick add` and `upsell`. 
 * [quantity](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/content/productlistitem.schema.md#xdmquantity) (_Highly Recommended) -- The number of units the customer has indicated they require of the product. Should be set on `productListAdds`, `productListRemoves`, `purchases`, `saveForLaters`, etc.
 
 ## Examples
+
+---
+`productView` event
+```javascript
+alloy("event", {
+  "xdm": {
+    "commerce":{
+      "productViews":{
+        "value":1
+      }
+    },
+    "productListItems":[
+      {
+        "SKU":"HT105",
+        "name":"The Big Floppy Hat",
+      },
+      {
+        "SKU":"HT104",
+        "name":"The Small Floppy Hat",
+      }
+    ]
+  }
+});
+```
+
+---
+`productView` event
+
+```javascript
+alloy("event", {
+  "xdm": {
+    "commerce":{
+      "productListAdds":{
+        "value":1
+      }
+    },
+    "productListItems":[
+      {
+        "SKU":"HT105",
+        "name":"The Big Floppy Hat",
+        "quantity":1,
+        "priceTotal":29.99,
+        "productAddMethod":"Add to Cart Button"
+      },
+      {
+        "SKU":"HT104",
+        "name":"The Small Floppy Hat",
+        "quantity":1,
+        "priceTotal":9.99,
+        "productAddMethod":"Add-on"
+      }
+    ]
+  }
+});
+```
+
+---
+`checkout` event
+
+```javascript
+alloy("event", {
+  "xdm": {
+    "commerce":{
+      "checkouts":{
+        "value":1
+      }
+    },
+    "productListItems":[
+      {
+        "SKU":"HT105",
+        "name":"The Big Floppy Hat",
+        "quantity":1,
+        "priceTotal":29.99
+      },
+      {
+        "SKU":"HT104",
+        "name":"The Small Floppy Hat",
+        "quantity":1,
+        "priceTotal":9.99
+      }
+    ]
+  }
+});
+```
+
+---
+`purchase` event
+
+```javascript
+alloy("event", {
+  "xdm": {
+    "commerce":{
+      "order":{
+        "purchaseID":"123456789",
+        "currenceCode":"USD",
+        "priceTotal":39.98,
+        "payments":[
+          {
+            "transactionID":"amx12345",
+            "paymentAmount":39.98,
+            "paymentType":"credit_card",
+            "currencyCode":"USD"
+          }
+        ]
+      }
+    },
+    "productListItems":[
+      {
+        "SKU":"HT105",
+        "name":"The Big Floppy Hat",
+        "priceTotal":29.99,
+        "quantity":1
+      },
+      {
+        "SKU":"HT104",
+        "name":"The Small Floppy Hat",
+        "priceTotal":9.99,
+        "qauntity":1
+      }
+    ]
+  }
+});
+```
