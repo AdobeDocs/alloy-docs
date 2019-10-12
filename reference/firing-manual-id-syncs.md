@@ -1,6 +1,6 @@
 ---
 description: >-
-  Learn how to fire manual ID syncs to synchronize the Adobe unique user ID with the unique user ID of a third party data source.
+  Learn how to manually synchronize the Adobe unique user ID with the unique user ID of a third-party data source.
 ---
 
 {% hint style="warning" %}
@@ -9,7 +9,7 @@ This documentation is for a library and a service that is in Alpha and should no
 
 # Firing Manual ID Syncs
 
-It may be useful to fire your own customized ID syncs in addition to those that come from the server.
+The SDK can synchronize IDs with other applications using a feature called ID syncs. This happens automatically and is configured from within Adobe's tools. Sometimes, it may be useful to fire your own customized ID sync URLs manually in addition to those that come from the server.
 
 ```js
 alloy("syncIdsByUrl", {
@@ -18,8 +18,7 @@ alloy("syncIdsByUrl", {
       type: "url",
       id: 500,
       spec: {
-        url:
-          "https://idsync.rlcdn.com/365868.gif?partner_uid=79653899615727305204290942296930013270",
+        url: "https://idsync.rlcdn.com/365868.gif?partner_uid=79653899615727305204290942296930013270",
         hideReferrer: 0,
         ttlMinutes: 10080
       }
@@ -30,11 +29,62 @@ alloy("syncIdsByUrl", {
 });
 ```
 
-The `syncIdsByUrl` command contains the following properties:
+The `syncIdsByUrl` command supports the following option:
 
-* `idSyncs` An array of ID sync objects.
-* `type` "url" must be specified to distinguish it from other types such as "cookie".
-* `id` Data source ID. This should be obtained from your consultant in order to avoid collisioms with other data source IDs.
-* `url` The custom ID sync URL. It usually contains the data source unique user ID.
-* `hideReferrer` 1 to make the document.referrer of the network request blank. 0 to leave it populated.
-* `ttlMinutes` Delay, in minutes before synchonizing IDs again. Minimum is 10080 (7 days).  
+### `idSyncs`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| Array | No | none |
+
+An array of ID sync objects.
+
+Each ID sync object is structured as follows:
+
+### `type`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| String | Yes | none |
+
+"url" must be specified to distinguish it from other types such as "cookie".
+
+### `id`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| Number | Yes | none |
+
+Data source ID (integer >= 0). This should be obtained from your consultant in order to avoid collisions with other data source IDs.
+
+### `spec`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| Object | Yes | none |
+
+A specifications object.
+
+### `spec.url`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| String | Yes | none |
+
+The custom ID sync URL. It usually contains the data source unique user ID.
+
+### `spec.hideReferrer`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| Boolean | Yes | none |
+
+`true` to make the document.referrer of the network request blank. `false` to leave it populated.
+
+### `spec.ttlMinutes`
+
+| **Type** | **Required** | **Default Value** |
+| -- | -- | -- |
+| Number | No | 10080 |
+
+Delay (integer), in minutes, before synchronizing IDs again. Minimum is 10080 (7 days).
