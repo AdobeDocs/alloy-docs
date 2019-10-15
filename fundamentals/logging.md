@@ -9,7 +9,7 @@ This documentation is for a library and a service that is in Alpha and should no
 
 # Logging
 
-When logging is enabled, the SDK will output messages to the browser console that can helpful in debugging your implementation and understanding how the SDK is behaving. Logging is disabled by default, but can be toggled in three different ways: the `configure` command, the `log` command, or a query string parameter.
+When logging is enabled, the SDK will output messages to the browser console that can be helpful in debugging your implementation and understanding how the SDK is behaving. Logging is disabled by default, but can be toggled in three different ways: the `configure` command, the `log` command, or a query string parameter.
 
 ## Toggling Logging Through the Configure Command
 
@@ -23,7 +23,9 @@ alloy("configure", {
 });
 ```
 
-Note that this will enable logging for all users of the webpage rather than just your browser.
+{% hint style="info" %}
+This will enable logging for all users of the webpage rather than just your personal browser.
+{% endhint %}
 
 ## Toggling Logging Through the Log Command
 
