@@ -9,7 +9,11 @@ This documentation is for a library and a service that is in Alpha and should no
 
 # Logging
 
-The `configure` command allows you to enable logging. If you set the `log` option to `true`, the SDK will log messages to the console that are helpful in understanding exactly what the SDK is doing.
+When logging is enabled, the SDK will output messages to the browser console that can be helpful in debugging your implementation and understanding how the SDK is behaving. Logging is disabled by default, but can be toggled in three different ways: the `configure` command, the `log` command, or a query string parameter.
+
+## Toggling Logging Through the Configure Command
+
+When configuring the SDK using the `configure` command, you may enable logging by setting the `log` option to `true`.
 
 ```javascript
 alloy("configure", {
@@ -19,7 +23,13 @@ alloy("configure", {
 });
 ```
 
-For your convenience, you can also toggle logging through a separate `log` command as follows:
+{% hint style="info" %}
+This will enable logging for all users of the webpage rather than just your personal browser.
+{% endhint %}
+
+## Toggling Logging Through the Log Command
+
+You may toggle logging through a separate `log` command as follows:
 
 ```javascript
 alloy("log", {
@@ -27,18 +37,19 @@ alloy("log", {
 });
 ```
 
-{% hint style="info" %}
-Note that you may execute this `log` command within your browser's JavaScript console to toggle logging at any time. This can be particularly useful when it's difficult to change code on your webpage or you don't want logging messages to be produced for all users of your website.
-{% endhint %}
+If you prefer not to change code on your webpage or don't want logging messages to be produced for all users of your website, this is particularly useful because you can run the `log` command within your browser's JavaScript console at any time.
 
-{% hint style="info" %}
-Note that the value of the `log` command or config gets set in local storage. If you want to toggle logging, you will need to pass the opposite value of the initial setting. For example, if logging was set to `true` and you would like to turn it off, you will need to set the `log` config to `false`; omitting the `log` config will not be enough to turn it off.
-{% endhint %}
 
-Additionally logging can be enabled by adding `alloy_log=true` as query parameter in the URL to enable logging to enabled it just on your browser.
+## Toggling Logging Through a Query String Parameter
 
-```http
-https://www.example.com?alloy_log=true
+You may toggle logging by setting an `alloy_log` query string parameter to `true` or `false` as follows:
+
+```
+http://example.com/?alloy_log=true
 ```
 
-When logging is enabled, it will remain enabled until you disable it again. You can disable logging through the same mechanisms just outlined, but by using a value of `false` instead of `true`.
+Similar to the `log` command, if you prefer not to change code on your webpage or don't want logging messages to be produced for all users of your website, this is particularly useful because you can set the query string parameter when loading the webpage within your browser. 
+
+## Priority and Duration
+
+When logging is set through the `log` command or query string parameter, it will override any `log` option set in the `configure` command. In these two cases, logging will also remain toggled for the duration of the session. In other words, if you were to enable logging using the log command or query string parameter, it would stay enabled until the end of your session or until you run the `log` command or set the query string parameter again.
