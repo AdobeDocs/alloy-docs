@@ -17,7 +17,7 @@
 
 ## What to Implement
 
-* [Products](what-to-implement/shopping-cart.md)
+* [Commerce](what-to-implement/commerce.md)
 
 ## Reference
 
