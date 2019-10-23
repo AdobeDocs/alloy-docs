@@ -81,16 +81,3 @@ For example, if you had an element on your web page with an ID of `container` wh
 ```javascript
   prehidingStyle: "#container { opacity: 0 !important }"
 ```
-
-
-### `authoringModeEnabled`
- **Type:** Boolean\
- **Required:** No\
- **Default Value:** `false`
- 
-Enables the personalization component authoring mode, which will ensure that no personalization content will be retrieved from the server and no data collection requests will be initiated from within the personalization component.
-For Adobe Target Visual Experience Composer this option should be initialized to something like:
-```javascript
-  authoringModeEnabled: document.location.href.indexOf("mboxEdit") !== -1
-```
-If other WYSIWYG tools are used to create personalized experiences and content, then this option should be initialized accordingly.
