@@ -17,7 +17,7 @@ When configuring the SDK using the `configure` command, you may enable logging b
 
 ```javascript
 alloy("configure", {
-  "propertyId": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
   "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg",
   "log": true
 });
