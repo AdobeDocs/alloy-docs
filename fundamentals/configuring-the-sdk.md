@@ -13,7 +13,7 @@ Configuration for the SDK is done with the `configure` command. This should _alw
 
 ```javascript
 alloy("configure", {
-  "propertyId": "ebebf826-a01f-4458-8cec-ef61de241c93",
+  "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
   "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg"
 });
 ```
@@ -22,13 +22,13 @@ There are many different options that can be set during configuration. All optio
 
 ## General Options
 
-### `propertyId`
+### `configId`
 
 | **Type** | **Required** | **Default Value** |
 | -------- | ------------ | ----------------- |
 | String   | Yes          | none              |
 
-Your assigned property ID, which links the SDK to the appropriate accounts and configuration.
+Your assigned configuration ID, which links the SDK to the appropriate accounts and configuration.
 
 ### `imsOrgId`
 
