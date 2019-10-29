@@ -3,9 +3,7 @@ description: >-
   Learn what Alloy is and how it can be used.
 ---
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
-{% endhint %}
+## This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
 
 # What is Alloy
 Alloy is a client-side JavaScript library that allows customers of the Adobe Experience Cloud to interact with the various services in the Experience Cloud. It is meant to replace the following SDKs.
