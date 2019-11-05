@@ -112,21 +112,21 @@ For example, if you had an element on your web page with an ID of `container` wh
 
 ## Audiences Options
 
-### `urlActivationEnabled`
+### `urlDestinationsEnabled`
 
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | Boolean | No | `true` |
 
-Enables the activation of URL destinations, which allows the firing of URLs based on segment qualification.
+Enables URL destinations, which allows the firing of URLs based on segment qualification.
 
-### `cookieActivationEnabled`
+### `cookieDestinationsEnabled`
 
 | **Type** | **Required** | **Default Value** |
 | -- | -- | -- |
 | Boolean | No | `true` |
 
-Enables the activation of cookie destinations, which allows the setting of cookies based on segment qualification.
+Enables cookie destinations, which allows the setting of cookies based on segment qualification.
 
 ## Identity Options
 
