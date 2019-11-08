@@ -42,7 +42,7 @@ Your assigned Experience Cloud organization ID.
 
 | **Type** | **Required** | **Default Value**             |
 | -------- | ------------ | ----------------------------- |
-| String   | No           | `alpha.konductor.adobedc.net` |
+| String   | No           | `beta.adobedc.net` |
 
 The domain that will be used to interact with Adobe Services. This is only used if you have a first party domain (CNAME) that proxies requests to Adobe's edge infrastructure.
 
@@ -62,6 +62,19 @@ Indicates whether debugging messages should be displayed in the browser's JavaSc
 
 Indicates whether errors should be suppressed. As described in [Executing Commands](executing-commands.md), _uncaught_ errors will be logged to the developer console, regardless of whether logging is enabled in Alloy. By setting `errorsEnabled` to `false`, promises returned from Alloy will never be rejected, though errors will still be logged to the console if logging is enabled in Alloy.
 
+### `debug`
+
+| **Type** | **Required** | **Default Value** |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `false`           |
+
+Indicates whether debugging should be enabled. Setting this config to `true` enables the following features:
+
+| **Feature** |                                     |
+| ------------ | ----------------------------------- |
+| Synchronous validation    | Validates the data being collected against the schema and return an error in the response under the following label: `collect:error|success` |
+
+
 ### `context`
 
 | **Type**         | **Required** | **Default Value**                                  |
@@ -69,6 +82,24 @@ Indicates whether errors should be suppressed. As described in [Executing Comman
 | Array of Strings | No           | `["web", "device", "environment", "placeContext"]` |
 
 Indicates which context categories to collect automatically as described in [Automatic Information](../reference/automatic-information.md).  If this configuration is not specified, all of the categories will be used by default.
+
+## Data Collection
+
+### `schemaId`
+
+| **Type** | **Required** | **Default Value** |
+| -------------- | ---------------------- | -------------------------------- |
+| string   | No                     | `none`                     |
+
+The ID of the schema you have created in Adobe Experience Platform. This config should be set in the configuration service as part of the provisioning process, and only set directly in Alloy to override that value if necessary.
+
+### `datasetId`
+
+| **Type** | **Required** | **Default Value** |
+| -------------- | ---------------------- | -------------------------------- |
+| string   | No                     | `none`                     |
+
+The ID of the data set you want to collect to in Adobe Experience Platform. This config should be set in the configuration service as part of the provisioning process, and only set directly in Alloy to override that value if necessary.
 
 ### `clickCollectionEnabled`
 
