@@ -47,7 +47,7 @@ mycustomname1("event", {
 
 mycustomname2("configure", {
   "configId": "f46e981f-fd03-4bdd-a9d9-73ce4447f870",
-  "imsOrgId":"ADB3NUMBERSANDLETTERS@AdobeOrg"
+  "imsOrgId":"ADB3NUMBERSANDLETTERS2@AdobeOrg"
 });
 
 mycustomname2("event", {
@@ -58,3 +58,7 @@ mycustomname2("event", {
 ```
 
 Be sure to execute the `configure` command for each instance before executing other commands on the same instance.
+
+## Limitations
+
+To avoid conflicts with cookies, only one instance of Alloy can have a particular configId.  Similarly, only one instance of Alloy can have a particular imsOrgId.  

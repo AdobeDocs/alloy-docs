@@ -28,7 +28,7 @@ There are many different options that can be set during configuration. All optio
 | -------- | ------------ | ----------------- |
 | String   | Yes          | none              |
 
-Your assigned configuration ID, which links the SDK to the appropriate accounts and configuration.
+Your assigned configuration ID, which links the SDK to the appropriate accounts and configuration.  When configuring multiple instances, you must configure a different configId for each instance.
 
 ### `imsOrgId`
 
@@ -36,7 +36,7 @@ Your assigned configuration ID, which links the SDK to the appropriate accounts 
 | -------- | ------------ | ----------------- |
 | String   | Yes          | none              |
 
-Your assigned Experience Cloud organization ID.
+Your assigned Experience Cloud organization ID.  When configuring multiple instances, you must configure a different imsOrgId for each instance.
 
 ### `edgeDomain`
 
