@@ -72,9 +72,9 @@ Indicates which context categories to collect automatically as described in [Aut
 
 ### `clickCollectionEnabled`
 
-| **Type** | **Required** | **Default Value** |
-| -------------------- | -------------------------------- | ----------------------------------------------- |
-| Boolean    | No                               | `true`                                  |
+| **Type**             | **Required**                     | **Default Value** |
+| -------------------- | -------------------------------- | ----------------- |
+| Boolean              | No                               | `true`            |
 
 Indicates whether data associated with link clicks should be automatically collected or not. For clicks that qualify as link clicks, the following [Web Interaction](https://github.com/adobe/xdm/blob/master/docs/reference/context/webinteraction.schema.md) data is collected:
 
@@ -83,6 +83,14 @@ Indicates whether data associated with link clicks should be automatically colle
 | Link Name    | Name determined by the link context |
 | Link URL     | Normalized URL                      |
 | Link Type    | Set to download, exit, or other     |
+
+### `onBeforeEventSend`
+
+| **Type**         | **Required** | **Default Value** |
+| ---------------- | ------------ | ----------------- |
+| Function         | No           | () => undefined   |
+
+Set this to configure a callback that will be called for every event.  An object with the field `xdm` is sent in to the callback.  Modify the xdm object to change what is sent. (see [Modifying Events Globally](../reference/tracking-events.md#modifying-events-globally))
 
 ## Privacy Options
 
