@@ -127,7 +127,7 @@ Information about the SDK used to collect the event
 | ------------------------------------- | --------------------------------------- |
 | `events[].xdm.implementationDetails.name` | `https://ns.adobe.com/experience/alloy` |
 
-The software development kit (SDK) identifier.  This field uses a URI to avoid duplication among software libraries.
+The software development kit (SDK) identifier.  This field uses a URI to improve uniqueness among identifiers provided by different software libraries.
 
 ### Version
 

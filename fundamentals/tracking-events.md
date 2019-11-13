@@ -121,19 +121,19 @@ When an event succeeds, a `result` object is provided. This object has the follo
  
 ## Modifying Events Globally
 
-If you want to add, remove, or modify fields from the event globally, you can configure an onBeforeEventSend callback.  This callback will be called everytime and event is sent.  This callback passes an object with an `xdm` fields.  Modify the xdm object to change the data that is sent in the event.
+If you want to add, remove, or modify fields from the event globally, you can configure an `onBeforeEventSend` callback.  This callback will be called everytime an event is sent.  This callback is passed an event object with an `xdm` field.  Modify `event.xdm` to change the data that is sent in the event.
 
 ```javascript
 alloy("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg",
-  "onBeforeEventSend": ({ xdm }) => {
+  "imsOrgId": "ADB3LETTERSANDNUMBERS@AdobeOrg",
+  "onBeforeEventSend": function(event) {
     // Change existing values
-    xdm.web.webPageDetails.URL = xdm.web.webPageDetails.URL.toLowerCase();
+    event.xdm.web.webPageDetails.URL = xdm.web.webPageDetails.URL.toLowerCase();
     // Remove existing values
-    delete xdm.web.webReferrer.URL;
+    delete event.xdm.web.webReferrer.URL;
     // Or add new values
-    xdm._adb3lettersandnumbers.mycustomkey = "value";
+    event.xdm._adb3lettersandnumbers.mycustomkey = "value";
   }
 });
 ```
@@ -142,6 +142,6 @@ alloy("configure", {
 
 1. Values passed in as options to the event command `alloy("event", { xdm: ... });`
 2. Automatically collected values.  (see [Automatic Information](../reference/automatic-information.md))
-3. The changes made in the onBeforeEventSend callback.
+3. The changes made in the `onBeforeEventSend` callback.
 
-If the onBeforeEventSend callback throws an exception, the event will still send; however, none of the changes that were made inside the callback will be applied to the final event.
+If the `onBeforeEventSend` callback throws an exception, the event will still send; however, none of the changes that were made inside the callback will be applied to the final event.
