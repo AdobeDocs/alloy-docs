@@ -9,7 +9,7 @@
 * [Configuring the SDK](fundamentals/configuring-the-sdk.md)
 * [Tracking Events](fundamentals/tracking-events.md)
 * [Merging Event Data](fundamentals/merging-event-data.md)
-* [Logging](fundamentals/logging.md)
+* [Debugging](fundamentals/debugging.md)
 * [Interacting with Multiple Properties](fundamentals/interacting-with-multiple-properties.md)
 * [Rendering Personalization Content](fundamentals/rendering-personalization-content.md)
 * [Supporting Opt-In](fundamentals/supporting-opt-in.md)
