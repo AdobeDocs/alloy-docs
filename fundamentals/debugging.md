@@ -20,7 +20,7 @@ When configuring the SDK using the `configure` command, you may enable debugging
 ```javascript
 alloy("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg",
+  "orgId":"ADB3LETTERSANDNUMBERS@AdobeOrg",
   "debugEnabled": true
 });
 ```

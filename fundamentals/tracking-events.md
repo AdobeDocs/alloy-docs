@@ -126,7 +126,7 @@ If you want to add, remove, or modify fields from the event globally, you can co
 ```javascript
 alloy("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId": "ADB3LETTERSANDNUMBERS@AdobeOrg",
+  "orgId": "ADB3LETTERSANDNUMBERS@AdobeOrg",
   "onBeforeEventSend": function(event) {
     // Change existing values
     event.xdm.web.webPageDetails.URL = xdm.web.webPageDetails.URL.toLowerCase();

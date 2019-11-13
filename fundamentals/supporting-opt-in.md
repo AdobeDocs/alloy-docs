@@ -25,7 +25,7 @@ To prevent the SDK from performing these tasks until the user opts in, pass `"op
 ```javascript
 alloy("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg",
+  "orgId":"ADB3LETTERSANDNUMBERS@AdobeOrg",
   "optInEnabled": true
 });
 ```

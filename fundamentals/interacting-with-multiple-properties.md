@@ -36,7 +36,7 @@ Following the above example, you can now execute commands using each of the inst
 ```javascript
 mycustomname1("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId": "ADB3LETTERSANDNUMBERS@AdobeOrg"
+  "orgId": "ADB3LETTERSANDNUMBERS@AdobeOrg"
 });
 
 mycustomname1("event", {
@@ -47,7 +47,7 @@ mycustomname1("event", {
 
 mycustomname2("configure", {
   "configId": "f46e981f-fd03-4bdd-a9d9-73ce4447f870",
-  "imsOrgId": "ADB3NUMBERSANDLETTERS2@AdobeOrg"
+  "orgId": "ADB3NUMBERSANDLETTERS2@AdobeOrg"
 });
 
 mycustomname2("event", {
@@ -61,4 +61,4 @@ Be sure to execute the `configure` command for each instance before executing ot
 
 ## Limitations
 
-To avoid conflicts with cookies, only one instance of Alloy within a page can have a particular `configId`.  Similarly, only one instance of Alloy can have a particular `imsOrgId`.  
+To avoid conflicts with cookies, only one instance of Alloy within a page can have a particular `configId`.  Similarly, only one instance of Alloy can have a particular `orgId`.  
