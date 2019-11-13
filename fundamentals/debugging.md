@@ -29,7 +29,7 @@ alloy("configure", {
 This will enable debugging for all users of the webpage rather than just your personal browser.
 {% endhint %}
 
-## Toggling Debugging Through the debug Command
+## Toggling Debugging Through the Debug Command
 
 You may toggle debugging through a separate `debug` command as follows:
 
