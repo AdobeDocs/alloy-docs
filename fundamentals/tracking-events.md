@@ -36,7 +36,38 @@ alloy("event", {
 
 ### Sending Non-XDM Data
 
-Currently, sending data that does not match an XDM schema is unsupported. Support is planned for a future date. 
+Currently, sending data that does not match an XDM schema is unsupported. Support is planned for a future date.
+
+### Setting `eventType`
+
+In an XDM experience event, there is an `eventType` field. This holds the primary event type for the record. This can be passed in as part of the xdm option.
+
+```javascript
+alloy("event", {
+  "xdm": {
+    "eventType": "commerce.purchases",
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    }
+  }
+});
+```
+
+Alternatively, the `eventType` can be passed into the event command as it's own option. Behind the scenes, the eventType will be added to the XDM data. Having the `eventType` as an option allows you to more easily set the `eventType` without having to modify the XDM payload.
+
+```javascript
+var myXDMData = { ... };
+
+alloy("event", {
+  "xdm": myXDMData,
+  "eventType": "commerce.purchases"
+});
+```
 
 ### Starting a View
 
