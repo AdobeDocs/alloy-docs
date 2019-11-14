@@ -137,6 +137,14 @@ Enables cookie destinations, which allows the setting of cookies based on segmen
 
 ## Identity Options
 
+### `idMigrationEnabled`
+
+| **Type** | **Required** | **Default Value** |
+| -------------- | ---------------------- | -------------------------------- |
+| Boolean   | No                     | `true`                     |
+
+Enables the AEP Web SDK to preserve the ECID by reading/writing the AMCV cookie. Use this config until users are fully migrated to the Alloy cookie and in situations where you have mixed pages on your website.
+
 ### `idSyncEnabled`
 
 | **Type** | **Required** | **Default Value** |
