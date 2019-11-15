@@ -42,17 +42,22 @@ Your assigned Experience Cloud organization ID.
 
 | **Type** | **Required** | **Default Value**             |
 | -------- | ------------ | ----------------------------- |
-| String   | No           | `alpha.konductor.adobedc.net` |
+| String   | No           | `beta.adobedc.net` |
 
 The domain that will be used to interact with Adobe Services. This is only used if you have a first party domain (CNAME) that proxies requests to Adobe's edge infrastructure.
 
-### `logEnabled`
+### `debugEnabled`
 
 | **Type** | **Required** | **Default Value** |
 | -------- | ------------ | ----------------- |
 | Boolean  | No           | `false`           |
 
-Indicates whether debugging messages should be displayed in the browser's JavaScript console. This setting is sticky and will persist until you change it.
+Indicates whether debugging should be enabled. Setting this config to `true` enables the following features:
+
+| **Feature** |                                     |
+| ------------ | ----------------------------------- |
+| Synchronous validation    | Validates the data being collected against the schema and return an error in the response under the following label: `collect:error OR success` |
+| Console logging    | Enables debugging messages to be displayed in the browser's JavaScript console |
 
 ### `errorsEnabled`
 
@@ -60,7 +65,7 @@ Indicates whether debugging messages should be displayed in the browser's JavaSc
 | -------- | ------------ | ----------------- |
 | Boolean  | No           | `true`            |
 
-Indicates whether errors should be suppressed. As described in [Executing Commands](executing-commands.md), _uncaught_ errors will be logged to the developer console, regardless of whether logging is enabled in Alloy. By setting `errorsEnabled` to `false`, promises returned from Alloy will never be rejected, though errors will still be logged to the console if logging is enabled in Alloy.
+Indicates whether errors should be suppressed. As described in [Executing Commands](executing-commands.md), _uncaught_ errors will be logged to the developer console, regardless of whether debugging is enabled in Alloy. By setting `errorsEnabled` to `false`, promises returned from Alloy will never be rejected, though errors will still be logged to the console if logging is enabled in Alloy.
 
 ### `context`
 
@@ -69,6 +74,8 @@ Indicates whether errors should be suppressed. As described in [Executing Comman
 | Array of Strings | No           | `["web", "device", "environment", "placeContext"]` |
 
 Indicates which context categories to collect automatically as described in [Automatic Information](../reference/automatic-information.md).  If this configuration is not specified, all of the categories will be used by default.
+
+## Data Collection
 
 ### `clickCollectionEnabled`
 

@@ -14,7 +14,7 @@
 * [Configuring the SDK](fundamentals/configuring-the-sdk.md)
 * [Tracking Events](fundamentals/tracking-events.md)
 * [Merging Event Data](fundamentals/merging-event-data.md)
-* [Logging](fundamentals/logging.md)
+* [Debugging](fundamentals/debugging.md)
 * [Interacting with Multiple Properties](fundamentals/interacting-with-multiple-properties.md)
 * [Rendering Personalization Content](fundamentals/rendering-personalization-content.md)
 * [Supporting Opt-In](fundamentals/supporting-opt-in.md)
@@ -27,5 +27,4 @@
 ## Reference
 
 * [Automatically Collected Information](reference/automatic-information.md)
-* [Manually Firing ID Syncs](reference/firing-manual-id-syncs.md)
 * [Retrieving Library Information](reference/retrieving-library-information.md)
