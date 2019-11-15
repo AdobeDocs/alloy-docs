@@ -74,7 +74,7 @@ eventMergeIdPromise.then(function(eventMergeId) {
         }
       }
     }
-    "eventMergeId": eventMergeId
+    "mergeId": eventMergeId
   });
 });
 
@@ -96,7 +96,7 @@ eventMergeIdPromise.then(function(eventMergeId) {
         }
       }
     }
-    "eventMergeId": eventMergeId
+    "mergeId": eventMergeId
   });
 });
 ```
@@ -114,7 +114,7 @@ eventMergeIdPromise.then(function(eventMergeId) {
 
 ## Note on XDM format
 
-Inside the event command, the `eventMergeId` is actually added to the `xdm` payload.  If desired, the eventMergeId can be sent as part of the xdm option instead like this:
+Inside the event command, the `mergeId` is actually added to the `xdm` payload.  If desired, the `mergeId` can be sent as part of the xdm option instead like this:
 
 ```javascript
 alloy("event", {

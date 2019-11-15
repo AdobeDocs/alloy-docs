@@ -58,14 +58,14 @@ alloy("event", {
 });
 ```
 
-Alternatively, the `eventType` can be passed into the event command as it's own option. Behind the scenes, the eventType will be added to the XDM data. Having the `eventType` as an option allows you to more easily set the `eventType` without having to modify the XDM payload.
+Alternatively, the `eventType` can be passed into the event command using the `type` option. Behind the scenes, this will be added to the XDM data. Having the `type` as an option allows you to more easily set the `eventType` without having to modify the XDM payload.
 
 ```javascript
 var myXDMData = { ... };
 
 alloy("event", {
   "xdm": myXDMData,
-  "eventType": "commerce.purchases"
+  "type": "commerce.purchases"
 });
 ```
 
