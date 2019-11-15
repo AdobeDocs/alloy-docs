@@ -3,10 +3,6 @@ description: >-
   Learn how to support opt-in.
 ---
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
-{% endhint %}
-
 # Supporting Opt-In
 
 To respect your user's privacy, you may wish to ask for the user's consent before allowing the SDK to use user-specific data for certain purposes. Currently, the SDK only allows users to opt into all purposes or no purposes, but in the future we hope to provide more granular control over specific purposes.
@@ -25,18 +21,18 @@ To prevent the SDK from performing these tasks until the user opts in, pass `"op
 ```javascript
 alloy("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg",
+  "imsOrgId": "ADB3LETTERSANDNUMBERS@AdobeOrg",
   "optInEnabled": true
 });
 ```
 
 Once Opt-in is enabled, attempting to execute any commands that depend on user opt-in preferences (e.g., the `event` command) will result in the command being queued within the SDK. These commands will not be processed until you have communicated the user's opt-in preferences to the SDK.
- 
+
 At this point, you will likely wish to ask the user to opt in somewhere within your user interface. Once the user's preferences have been collected, communicate these preferences to the SDK.
 
 ## Communicating User Preferences
 
-If the user opts into all purposes, execute the `optIn` command with the `purposes` option set to `all` as follows: 
+If the user opts into all purposes, execute the `optIn` command with the `purposes` option set to `all` as follows:
 
 ```javascript
 alloy("optIn", {
