@@ -17,7 +17,7 @@ Information about the device. This does not include data that can be looked up s
 
 | **Path in Payload:**           | **Example:** |
 | ------------------------------ | ------------ |
-| `events[].device.screenHeight` | `900`        |
+| `events[].xdm.device.screenHeight` | `900`        |
 
 The height in pixel of the screen  
 
@@ -25,7 +25,7 @@ The height in pixel of the screen
 
 | **Path in Payload:**          | **Example:** |
 | ----------------------------- | ------------ |
-| `events[].device.screenWidth` | `1440`       |
+| `events[].xdm.device.screenWidth` | `1440`       |
 
 The width of the screen (in pixels)  
 
@@ -33,7 +33,7 @@ The width of the screen (in pixels)
 
 | **Path in Payload:**                | **Possible Values:**      |
 | ----------------------------------- | ------------------------- |
-| `events[].device.screenOrientation` | `landscape` or `portrait` |
+| `events[].xdm.device.screenOrientation` | `landscape` or `portrait` |
 
 The orientation of the user's screen
 
@@ -45,7 +45,7 @@ Details about the browser environment.
 
 | **Path in Payload:**                                 | **Example:** |
 | ---------------------------------------------------- | ------------ |
-| `events[].environment.browserDetails.viewportHeight` | `679`        |
+| `events[].xdm.environment.browserDetails.viewportHeight` | `679`        |
 
 The height of the browser's content area (in pixels).
 
@@ -53,7 +53,7 @@ The height of the browser's content area (in pixels).
 
 | **Path in Payload:**                                | **Example:** |
 | --------------------------------------------------- | ------------ |
-| `events[].environment.browserDetails.viewportWidth` | `642`        |
+| `events[].xdm.environment.browserDetails.viewportWidth` | `642`        |
 
 The width of the browser's content area (in pixels).
 
@@ -63,7 +63,7 @@ Browser
 
 | **Path in Payload:**        | **Example:** |
 | --------------------------- | ------------ |
-| `events[].environment.type` | `browser`    |
+| `events[].xdm.environment.type` | `browser`    |
 
 The type of evironment the experience was surfaced through. The Adobe Experience Platform SDK for Javascript will always set Browser.
 
@@ -75,7 +75,7 @@ Information about the location of the end user.
 
 | **Path in Payload:**              | **Example:**                    |
 | --------------------------------- | ------------------------------- |
-| `events[].placeContext.localTime` | `2019-08-07T15:47:17.129-07:00` |
+| `events[].xdm.placeContext.localTime` | `2019-08-07T15:47:17.129-07:00` |
 
 Local timestamp for the end user in simplified extended ISO format [ISO 8601](https://tools.ietf.org/html/rfc3339#section-5.6).
 
@@ -83,7 +83,7 @@ Local timestamp for the end user in simplified extended ISO format [ISO 8601](ht
 
 | **Path in Payload:**                        | **Example:** |
 | ------------------------------------------- | ------------ |
-| `events[].placeContext.localTimezoneOffset` | `360`        |
+| `events[].xdm.placeContext.localTimezoneOffset` | `360`        |
 
 Number of minutes the user is offset from GMT  
 
@@ -95,7 +95,7 @@ Details about the page the user is on.
 
 | **Path in Payload:**              | **Example:**                         |
 | --------------------------------- | ------------------------------------ |
-| `events[].web.webPageDetails.URL` | `https://somesite.com/somepage.html` |
+| `events[].xdm.web.webPageDetails.URL` | `https://somesite.com/somepage.html` |
 
 The URL of the current page  
 
@@ -103,7 +103,7 @@ The URL of the current page
 
 | **Path in Payload:**           | **Example:**                              |
 | ------------------------------ | ----------------------------------------- |
-| `events[].web.webReferrer.URL` | `http://somereferrer.com/linkedpage.html` |
+| `events[].xdm.web.webReferrer.URL` | `http://somereferrer.com/linkedpage.html` |
 
 The URL of the previous page visited
 
@@ -111,8 +111,28 @@ The URL of the previous page visited
 
 | **Path in Payload:** | **Example:**               |
 | -------------------- | -------------------------- |
-| `events[].timestamp` | `2019-08-07T22:47:17.129Z` |
+| `events[].xdm.timestamp` | `2019-08-07T22:47:17.129Z` |
 
 The timestamp of the event.  This part of context cannot be removed.
 
 UTC timestamp for the end user in simplified extended ISO format [ISO 8601](https://tools.ietf.org/html/rfc3339#section-5.6)
+
+## Implementation Details
+
+Information about the SDK used to collect the event
+
+### Name
+
+| **Path in Payload:**                  | **Example:**                            |
+| ------------------------------------- | --------------------------------------- |
+| `events[].xdm.implementationDetails.name` | `https://ns.adobe.com/experience/alloy` |
+
+The software development kit (SDK) identifier.  This field uses a URI to improve uniqueness among identifiers provided by different software libraries.
+
+### Version
+
+| **Path in Payload:**                     | **Example:** |
+| ---------------------------------------- | ------------ |
+| `events[].xdm.implementationDetails.version` | `0.11.0`     |
+
+
