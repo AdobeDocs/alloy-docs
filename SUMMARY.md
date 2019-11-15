@@ -4,7 +4,6 @@
 
 ## Getting Started
 
-* [Quick Start](getting-started/quick-start-without-launch.md)
 * [Quick Start with Launch](getting-started/quick-start-with-launch.md)
 * [Deploying All Product](getting-started/deploying-all-products.md)
 
