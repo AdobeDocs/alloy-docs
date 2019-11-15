@@ -4,9 +4,9 @@
 
 ## Getting Started
 
-* [Quick Start](gettingStarted/quick-start-code.md)
-* [Quick Start with Launch](gettingStarted/quick-start-code-launch.md)
-* [Deploying All Product](gettingStarted/getting-started-all-products.md)
+* [Quick Start](getting-started/quick-start-without-launch.md)
+* [Quick Start with Launch](getting-started/quick-start-with-launch.md)
+* [Deploying All Product](getting-started/deploying-all-products.md)
 
 ## Fundamentals
 

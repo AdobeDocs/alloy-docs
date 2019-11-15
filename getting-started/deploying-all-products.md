@@ -8,5 +8,5 @@ This documentation is for a library and a service that is in Alpha and should no
 {% endhint %}
 
 {% hint style="info" %}
-The ability to deploy Adobe Analytics, Adobe Target, Adobe Experience Manager with the Adobe Experience Platform SDKs is coming soon. 
+The ability to deploy Adobe Analytics, Adobe Target, and Adobe Experience Manager with the Adobe Experience Platform SDK is coming soon.
 {% endhint %}

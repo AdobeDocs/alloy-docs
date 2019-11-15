@@ -11,16 +11,17 @@ This documentation is for a library and a service that is in Alpha and should no
 
 Currently the Adobe Experience Platform Web SDK only supports sending data to the Adobe Experience Platform using XDM. You must have the following prerequisites.
 
+- Have a [1st party domain (CNAME)](https://helpx.adobe.com/customer-care-office-hours/analytics/first-party-cookies-adobe-managed-certificates.html) enabled
 - Be entitled to the Adobe Experience Platform
-- Be using the latest version of Visitor.js
+- Be using the latest version of the Visitor ID service
 
 ## Prepare Platform
 
 To be able to send data to AEP you will need to create an XDM Schema and a dataset that uses that schema.
 
 - [Create a schama](https://www.adobe.io/apis/experienceplatform/home/tutorials/alltutorials.html#!api-specification/markdown/narrative/tutorials/schema_editor_tutorial/schema_editor_tutorial.md)
-- [Create a dataset](https://platform.adobe.com/dataset/overview) with your schema where you would like the data to land
 - Add the Alloy Mixin
+- [Create a dataset](https://platform.adobe.com/dataset/overview) with your schema where you would like the data to land
 
 ## Requesting a Configuration ID
 
@@ -33,9 +34,9 @@ You must have a configuration ID to be able to use the SDK. The configuration ID
 
 # Install the SDK
 
-Download the latest version of the SDK and copy the following code into the `<head>` for you html.
+Download the latest version of the SDK and copy the following code into the `<head>` element of your html.
 
-```markup
+```html
 <script>
   !function(n,o){o.forEach(function(o){n[o]||((n.__alloyNS=n.__alloyNS||
   []).push(o),n[o]=function(){var u=arguments;return new Promise(
@@ -45,7 +46,7 @@ Download the latest version of the SDK and copy the following code into the `<he
 <script src="alloy.js" async></script>
 ```
 
-Be sure to adjust the reference to `alloy.js` to your domain.
+Be sure to adjust the `src` to reference `alloy.js` hosted on your domain.
 
 For more details and additional options see our section on [installing the SDK](../fundamentals/installing-the-sdk.md)
 
@@ -56,29 +57,29 @@ After the library is added to the page. You will need to call the `configure` co
 ```javascript
 alloy("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg"
+  "OrgId": "ADB3LETTERSANDNUMBERS@AdobeOrg"
 });
 ```
 
-Be sure to change the `configId` and the `imsOrgId` out for your configuration ID (instructions above) and you OrgId (same as above).
+Be sure to change the `configId` and the `OrgId` values out for your configuration ID and you irganization ID (instructions on where to find these are above).
 
 For more details on different configuration options see our [Configuring the SDK](../fundamentals/configuring-the-sdk.md) section.
 
-# Send an event
+# Send an Event
 
-Once the `configure` command called you can start sending events.
+Once the `configure` command is called, you can start sending events.
 
 ```javascript
 alloy("event", {
-  "viewStart":true
+  "viewStart": true
 });
 ```
 
-This will send an event and will include all the details that the SDK collects automatically, including page information and browser information. `viewStart` is an options that lets the SDK know that a view has started or that a page is loading and it is safe to render.
+This will send an event that will include all the details that the SDK collects automatically, including page information and browser information. `viewStart` is an option that lets the SDK know that a view has started or a page is loading and it is safe to render.
 
-For more details on how to track events see your [Tracking Events](../fundamentals/tracking-events.md) section.
+For more details on how to track events, see the [Tracking Events](../fundamentals/tracking-events.md) section.
 
-# Send data
+# Send Data
 
 You can send data along with your events that matches the schema you created earlier. If I were a commerce site and I had implemented the commerce mixin I would send the following when someone viewed a product. 
 
