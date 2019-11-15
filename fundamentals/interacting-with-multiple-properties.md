@@ -61,4 +61,4 @@ Be sure to execute the `configure` command for each instance before executing ot
 
 ## Limitations
 
-To avoid conflicts with cookies, only one instance of Alloy can have a particular `configId`.  Similarly, only one instance of Alloy can have a particular `imsOrgId`.  
+To avoid conflicts with cookies, only one instance of Alloy within a page can have a particular `configId`.  Similarly, only one instance of Alloy can have a particular `imsOrgId`.  
