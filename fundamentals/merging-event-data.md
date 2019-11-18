@@ -3,10 +3,6 @@ description: >-
   Learn how to merge event data.
 ---
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
-{% endhint %}
-
 # Merging Event Data
 
 Sometimes, not all data is available when an event occurs. You may want to capture the data you _do_ have so it isn't lost if, for example, the user closes the browser. On the other hand, you may also want to include any data that will become available later.

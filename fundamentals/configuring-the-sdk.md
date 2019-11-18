@@ -3,10 +3,6 @@ description: >-
   Learn how to configure the SDK.
 ---
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
-{% endhint %}
-
 # Configuring the SDK
 
 Configuration for the SDK is done with the `configure` command. This should _always_ be the first command called.
@@ -40,8 +36,8 @@ Your assigned Experience Cloud organization ID.  When configuring multiple insta
 
 ### `edgeDomain`
 
-| **Type** | **Required** | **Default Value**             |
-| -------- | ------------ | ----------------------------- |
+| **Type** | **Required** | **Default Value**  |
+| -------- | ------------ | ------------------ |
 | String   | No           | `beta.adobedc.net` |
 
 The domain that will be used to interact with Adobe Services. This is only used if you have a first party domain (CNAME) that proxies requests to Adobe's edge infrastructure.
@@ -54,10 +50,10 @@ The domain that will be used to interact with Adobe Services. This is only used 
 
 Indicates whether debugging should be enabled. Setting this config to `true` enables the following features:
 
-| **Feature** |                                     |
-| ------------ | ----------------------------------- |
-| Synchronous validation    | Validates the data being collected against the schema and return an error in the response under the following label: `collect:error OR success` |
-| Console logging    | Enables debugging messages to be displayed in the browser's JavaScript console |
+| **Feature**            |                    |                                                                                                                            |
+| ---------------------- | ------------------ |
+| Synchronous validation | Validates the data being collected against the schema and return an error in the response under the following label: `collect:error OR success` |
+| Console logging        | Enables debugging messages to be displayed in the browser's JavaScript console                                                                  |
 
 ### `errorsEnabled`
 
@@ -79,9 +75,9 @@ Indicates which context categories to collect automatically as described in [Aut
 
 ### `clickCollectionEnabled`
 
-| **Type**             | **Required**                     | **Default Value** |
-| -------------------- | -------------------------------- | ----------------- |
-| Boolean              | No                               | `true`            |
+| **Type** | **Required** | **Default Value** |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `true`            |
 
 Indicates whether data associated with link clicks should be automatically collected or not. For clicks that qualify as link clicks, the following [Web Interaction](https://github.com/adobe/xdm/blob/master/docs/reference/context/webinteraction.schema.md) data is collected:
 
@@ -93,9 +89,9 @@ Indicates whether data associated with link clicks should be automatically colle
 
 ### `onBeforeEventSend`
 
-| **Type**         | **Required** | **Default Value** |
-| ---------------- | ------------ | ----------------- |
-| Function         | No           | () => undefined   |
+| **Type** | **Required** | **Default Value** |
+| -------- | ------------ | ----------------- |
+| Function | No           | () => undefined   |
 
 Set this to configure a callback that will be called for every event just before it is sent.  An object with the field `xdm` is sent in to the callback.  Modify the xdm object to change what is sent.  Inside the callback, the `xdm` object will already have the data passed in the event command, and the automatically collected information.  For more information on the timing of this callback and an example, see [Modifying Events Globally](../reference/tracking-events.md#modifying-events-globally).
 
@@ -104,8 +100,8 @@ Set this to configure a callback that will be called for every event just before
 ### `optInEnabled`
 
 | **Type** | **Required** | **Default Value** |
-| -------------- | ---------------------- | -------------------------------- |
-| Boolean   | No                     | `false`                     |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `false`           |
 
 Enables the opt-in feature, which allows work to be queued until the user provides his/her opt-in preferences. Once the user's preferences have been provided, work will either proceed or be aborted based on the user's preferences. See [Supporting Opt-In](supporting-opt-in.md) for more information.
 
@@ -130,16 +126,16 @@ For example, if you had an element on your web page with an ID of `container` wh
 ### `urlDestinationsEnabled`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Boolean | No | `true` |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `true`            |
 
 Enables URL destinations, which allows the firing of URLs based on segment qualification.
 
 ### `cookieDestinationsEnabled`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Boolean | No | `true` |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `true`            |
 
 Enables cookie destinations, which allows the setting of cookies based on segment qualification.
 
@@ -148,8 +144,8 @@ Enables cookie destinations, which allows the setting of cookies based on segmen
 ### `idSyncEnabled`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Boolean | No | `true` |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `true`            |
 
 Enables the ID sync feature, which allows the firing of URLs to synchronize the Adobe unique user ID with the unique user ID of a third party data source.
 

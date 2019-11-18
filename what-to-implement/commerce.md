@@ -4,10 +4,6 @@ description: How to add data if you have products or a shopping cart
 
 # Products
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use cases.
-{% endhint %}
-
 If you have products on your site, then this is a default set of things you may want to send to enable the most capabilities from Adobe. Though this is a suggestion, it will provide a very strong set of data right from the start.
 
 We will use the [ExperienceEvent Commerce Details](https://github.com/adobe/xdm/blob/1c22180490558e3c13352fe3e0540cb7e93c69ca/docs/reference/context/experienceevent-commerce.schema.md) mixin. The `commerce` mixin is broken into two parts: the `commerce` object and the `productListItems` array. The `commerce` object lets you indicate which actions are happening to the `productListItems` array.

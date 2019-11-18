@@ -3,10 +3,6 @@ description: >-
   Learn how to toggle debugging.
 ---
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
-{% endhint %}
-
 # Debugging
 
 When debugging is enabled, the SDK will output messages to the browser console that can be helpful in debugging your implementation and understanding how the SDK is behaving. Debugging will also result in a server side synchronous validation of the data being collected against the schema you have configured.
@@ -41,16 +37,15 @@ alloy("debug", {
 
 If you prefer not to change code on your webpage or don't want logging messages to be produced for all users of your website, this is particularly useful because you can run the `debug` command within your browser's JavaScript console at any time.
 
-
 ## Toggling Debugging Through a Query String Parameter
 
 You may toggle debugging by setting an `alloy_debug` query string parameter to `true` or `false` as follows:
 
-```
+```HTTP
 http://example.com/?alloy_debug=true
 ```
 
-Similar to the `debug` command, if you prefer not to change code on your webpage or don't want logging messages to be produced for all users of your website, this is particularly useful because you can set the query string parameter when loading the webpage within your browser. 
+Similar to the `debug` command, if you prefer not to change code on your webpage or don't want logging messages to be produced for all users of your website, this is particularly useful because you can set the query string parameter when loading the webpage within your browser.
 
 ## Priority and Duration
 
