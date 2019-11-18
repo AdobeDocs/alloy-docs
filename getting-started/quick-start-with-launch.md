@@ -3,10 +3,6 @@ description: >-
   Quick start guide for using the Experience Platform Web SDK extension to collect data. 
 ---
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases.
-{% endhint %}
-
 # Prerequisites
 
 Currently the Adobe Experience Platform Web SDK only supports sending data to the Adobe Experience Platform using XDM. You must satisfy the following prerequisites.
@@ -32,19 +28,19 @@ You must have a configuration ID to be able to use the SDK. The configuration ID
 - Schema ID: This is available in the URL of the schema creation screen
 - Friendly Name: This will be the friendly name that will be used in future UIs for this configuration
 
-# Install the SDK in Launch
+## Install the SDK in Launch
 
-Log into Launch and install the `AEP Web SDK extension`. As part of installing the SDK you will be prompted to configure the extension. Enter the Config ID you requested above. The extension will automatiaclly fill in your Organization ID. 
+Log into Launch and install the `AEP Web SDK` extension. As part of installing the SDK you will be prompted to configure the extension. Enter the Config ID you requested above. The extension will automatiaclly fill in your Organization ID.
 
 For more details on different configuration options see our [Configuring the SDK](../fundamentals/configuring-the-sdk.md) section.
 
-# Send an Event
+## Send an Event
 
 Once the extension is installed, can start sending events by adding a "Send Beacon" action from the AEP Web SDK extension. We recommend sending at least one event every time a page is loaded with the "occurs at the start of a view" option checked.
 
 For more details on how to track events see your [Tracking Events](../fundamentals/tracking-events.md) section.
 
-# Send Data
+## Send Data
 
 You can send data along with your events that matches the schema you created earlier. If I owned a commerce site and I had added the commerce mixin to my schema I would send the following structure when someone viewed a product.
 
