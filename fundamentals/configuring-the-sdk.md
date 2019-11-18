@@ -126,16 +126,16 @@ For example, if you had an element on your web page with an ID of `container` wh
 ### `urlDestinationsEnabled`
 
 | **Type** | **Required** | **Default Value** |
-| -------------------- | -------------------------------- | ----------------------------------------------- |
-| Boolean    | No                               | `true`                                  |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `true`            |
 
 Enables URL destinations, which allows the firing of URLs based on segment qualification.
 
 ### `cookieDestinationsEnabled`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Boolean | No | `true` |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `true`            |
 
 Enables cookie destinations, which allows the setting of cookies based on segment qualification.
 
@@ -144,8 +144,8 @@ Enables cookie destinations, which allows the setting of cookies based on segmen
 ### `idSyncEnabled`
 
 | **Type** | **Required** | **Default Value** |
-| -- | -- | -- |
-| Boolean | No | `true` |
+| -------- | ------------ | ----------------- |
+| Boolean  | No           | `true`            |
 
 Enables the ID sync feature, which allows the firing of URLs to synchronize the Adobe unique user ID with the unique user ID of a third party data source.
 
