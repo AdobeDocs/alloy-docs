@@ -34,6 +34,38 @@ alloy("event", {
 
 Currently, sending data that does not match an XDM schema is unsupported. Support is planned for a future date.
 
+
+### Setting `eventType`
+
+In an XDM experience event, there is an `eventType` field. This holds the primary event type for the record. This can be passed in as part of the xdm option.
+
+```javascript
+alloy("event", {
+  "xdm": {
+    "eventType": "commerce.purchases",
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    }
+  }
+});
+```
+
+Alternatively, the `eventType` can be passed into the event command using the `type` option. Behind the scenes, this will be added to the XDM data. Having the `type` as an option allows you to more easily set the `eventType` without having to modify the XDM payload.
+
+```javascript
+var myXDMData = { ... };
+
+alloy("event", {
+  "xdm": myXDMData,
+  "type": "commerce.purchases"
+});
+```
+
 ### Starting a View
 
 When a view has started, it is important to notify the SDK by setting `viewStart` to `true` within the `event` command. This will indicate, among other things, that the SDK should retrieve and render personalization content. Even if you are not using personalization currently, it will greatly simplify enabling personalization or other features later because you will not be required to modify on-page code. In addition, tracking views will be beneficial when viewing analytics reports after data has been collected.
@@ -102,18 +134,13 @@ alloy("event", {
       }
     }
   }
-}).then(function(result) {
+}).then(function() {
     // Tracking the event succeeded.
   })
   .catch(function(error) {
     // Tracking the event failed.
   });
 ```
-
-When an event succeeds, a `result` object is provided. This object has the following properties:
-
-* `requestBody` - This the body that was sent on the request to the server.
-* `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by the SDK (for example, when `viewStart` is set to `true`).
 
 ## Modifying Events Globally
 
@@ -122,7 +149,7 @@ If you want to add, remove, or modify fields from the event globally, you can co
 ```javascript
 alloy("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId": "ADB3LETTERSANDNUMBERS@AdobeOrg",
+  "orgId": "ADB3LETTERSANDNUMBERS@AdobeOrg",
   "onBeforeEventSend": function(event) {
     // Change existing values
     event.xdm.web.webPageDetails.URL = xdm.web.webPageDetails.URL.toLowerCase();

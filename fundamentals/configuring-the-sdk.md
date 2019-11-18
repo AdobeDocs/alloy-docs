@@ -10,7 +10,7 @@ Configuration for the SDK is done with the `configure` command. This should _alw
 ```javascript
 alloy("configure", {
   "configId": "ebebf826-a01f-4458-8cec-ef61de241c93",
-  "imsOrgId":"ADB3LETTERSANDNUMBERS@AdobeOrg"
+  "orgId":"ADB3LETTERSANDNUMBERS@AdobeOrg"
 });
 ```
 
@@ -24,15 +24,15 @@ There are many different options that can be set during configuration. All optio
 | -------- | ------------ | ----------------- |
 | String   | Yes          | none              |
 
-Your assigned configuration ID, which links the SDK to the appropriate accounts and configuration.
+Your assigned configuration ID, which links the SDK to the appropriate accounts and configuration.  When configuring multiple instances within a single page, you must configure a different `configId` for each instance.
 
-### `imsOrgId`
+### `orgId`
 
 | **Type** | **Required** | **Default Value** |
 | -------- | ------------ | ----------------- |
 | String   | Yes          | none              |
 
-Your assigned Experience Cloud organization ID.
+Your assigned Experience Cloud organization ID.  When configuring multiple instances within a page, you must configure a different `orgId` for each instance.
 
 ### `edgeDomain`
 
