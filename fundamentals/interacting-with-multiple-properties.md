@@ -3,15 +3,11 @@ description: >-
   Learn how to interact with multiple properties.
 ---
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
-{% endhint %}
-
 # Interacting with Multiple Properties
 
 There are certain cases where you might want to interact with two different properties on the same page. These include:
 
-* Companies that have been acquired and are working on integrating their websites together 
+* Companies that have been acquired and are working on integrating their websites together
 * Data-sharing relationships between multiple companies
 * Customers who are testing new Adobe Solutions and don't want to disrupt their existing implementation
 

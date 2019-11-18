@@ -3,10 +3,6 @@ description: >-
   Learn how to track events. 
 ---
 
-{% hint style="warning" %}
-This documentation is for a library and a service that is in Alpha and should not be used for production use-cases. 
-{% endhint %}
-
 # Tracking Events
 
 In order to send event data to the Adobe Experience Cloud, you will want to use the `event` command. The `event` command is the primary way of sending data to the Experience Cloud as well as retrieving personalized content, identities, and audience destinations.
@@ -32,11 +28,12 @@ alloy("event", {
     }
   }
 });
-``` 
+```
 
 ### Sending Non-XDM Data
 
 Currently, sending data that does not match an XDM schema is unsupported. Support is planned for a future date.
+
 
 ### Setting `eventType`
 
@@ -122,7 +119,7 @@ Browsers have imposed limits to the amount of data that can be sent with `sendBe
 
 ## Handling Responses from Events
 
-If you want to handle a response from an event, you can be notified of a success or failure as follows: 
+If you want to handle a response from an event, you can be notified of a success or failure as follows:
 
 ```javascript
 alloy("event", {
@@ -144,7 +141,7 @@ alloy("event", {
     // Tracking the event failed.
   });
 ```
- 
+
 ## Modifying Events Globally
 
 If you want to add, remove, or modify fields from the event globally, you can configure an `onBeforeEventSend` callback.  This callback will be called everytime an event is sent.  This callback is passed an event object with an `xdm` field.  Modify `event.xdm` to change the data that is sent in the event.
