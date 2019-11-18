@@ -176,3 +176,9 @@ alloy("configure", {
 3. The changes made in the `onBeforeEventSend` callback.
 
 If the `onBeforeEventSend` callback throws an exception, the event will still send; however, none of the changes that were made inside the callback will be applied to the final event.
+
+## Potential Actionable Errors
+
+When sending an event, an error may be thrown if the data being sent it too large (over 32KB for the full request). In this case, you will need to reduce the amount of data being sent.
+
+When debugging is enabled, the server will synchronously validate event data being sent against the configured XDM schema. If the data does not match the schema, details about the mismatch will be returned from the server and an error will be thrown. In this case, you will need to modify the data to match the schema. When debugging is not enabled, the server validates data asynchronously and therefore no corresponding error will be thrown. 
