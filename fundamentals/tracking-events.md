@@ -137,7 +137,7 @@ alloy("event", {
       }
     }
   }
-}).then(function(result) {
+}).then(function() {
     // Tracking the event succeeded.
   })
   .catch(function(error) {
