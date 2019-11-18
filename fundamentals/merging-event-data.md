@@ -11,7 +11,7 @@ This documentation is for a library and a service that is in Alpha and should no
 
 Sometimes, not all data is available when an event occurs. You may want to capture the data you _do_ have so it isn't lost if, for example, the user closes the browser. On the other hand, you may also want to include any data that will become available later.
 
-In such cases, you may merge data with prior events by passing `eventMergeId` inside the `xdm` option to `event` commands as follows:
+In such cases, you may merge data with prior events by passing `eventMergeId` as an option to `event` commands as follows:
 
 ```javascript
 alloy("event", {
@@ -23,9 +23,9 @@ alloy("event", {
         "currencyCode": "USD",
         "priceTotal": 999.98
       }
-    },
-    "eventMergeId": "ABC123"
+    }
   }
+  "eventMergeId": "ABC123"
 });
 
 // Time passes and more data becomes available
@@ -43,9 +43,9 @@ alloy("event", {
           }
         ]
       }
-    },
-    "eventMergeId": "ABC123"
+    }
   }
+  "eventMergeId": "ABC123"
 });
 ```
 
@@ -72,9 +72,9 @@ eventMergeIdPromise.then(function(eventMergeId) {
           "currencyCode": "USD",
           "priceTotal": 999.98
         }
-      },
-      "eventMergeId": eventMergeId
+      }
     }
+    "mergeId": eventMergeId
   });
 });
 
@@ -94,14 +94,14 @@ eventMergeIdPromise.then(function(eventMergeId) {
             }
           ]
         }
-      },
-      "eventMergeId": eventMergeId
+      }
     }
+    "mergeId": eventMergeId
   });
 });
 ```
 
-You can follow this same pattern if you would like access the event merge ID for other reasons (for example, to send it to a third-party provider):
+You can follow this same pattern if you would like access to the event merge ID for other reasons (for example, to send it to a third-party provider):
 
 ```javascript
 var eventMergeIdPromise = alloy("createEventMergeId");
@@ -109,5 +109,25 @@ var eventMergeIdPromise = alloy("createEventMergeId");
 eventMergeIdPromise.then(function(eventMergeId) {
   // send event merge ID to a third-party provider
   console.log(eventMergeId);
+});
+```
+
+## Note on XDM format
+
+Inside the event command, the `mergeId` is actually added to the `xdm` payload.  If desired, the `mergeId` can be sent as part of the xdm option instead like this:
+
+```javascript
+alloy("event", {
+  "xdm": {
+    "commerce": {
+      "order": {
+        "purchaseID": "a8g784hjq1mnp3",
+        "purchaseOrderNumber": "VAU3123",
+        "currencyCode": "USD",
+        "priceTotal": 999.98
+      }
+    },
+    "eventMergeId": "ABC123"
+  }
 });
 ```
