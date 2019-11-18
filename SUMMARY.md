@@ -2,6 +2,11 @@
 
 * [Overview](README.md)
 
+## Getting Started
+
+* [Quick Start with Launch](getting-started/quick-start-with-launch.md)
+* [Deploying All Products](getting-started/deploying-all-products.md)
+
 ## Fundamentals
 
 * [Installing the SDK](fundamentals/installing-the-sdk.md)
