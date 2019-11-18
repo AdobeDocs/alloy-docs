@@ -144,11 +144,6 @@ alloy("event", {
     // Tracking the event failed.
   });
 ```
-
-When an event succeeds, a `result` object is provided. This object has the following properties:
-
- * `requestBody` - This the body that was sent on the request to the server.
- * `responseBody` - This is the body that was sent on the response from the server. This property will only exist if a response was expected and processed by the SDK (for example, when `viewStart` is set to `true`).
  
 ## Modifying Events Globally
 
