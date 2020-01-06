@@ -10,7 +10,7 @@ To respect your user's privacy, you may wish to ask for the user's consent befor
 If the user opts into all purposes, the SDK will be allowed to perform the following tasks:
 
 * Send data to and from Adobe's servers.
-* Read and write cookies or web storage items (except for persisting the user's opt-in preferences).
+* Write privacy-sensitive cookies or web storage items.
 
 If the user does not opt into all purposes, the SDK will not perform any of these tasks.
 
@@ -50,8 +50,8 @@ alloy("optIn", {
 });
 ```  
 
-Because the user chose to not opt into any purposes, promises that were returned from previously queued commands will be rejected. Future commands that depend on the user opting in will return promises that are similarly rejected. For more information on handling or suppressing errors, please refer to [Executing Commands](executing-commands.md).
+Because the user chose to not opt into any purposes, promises that were returned from previously queued commands will be rejected. Future privacy-sensitive commands will return promises that are similarly rejected. For more information on handling or suppressing errors, please refer to [Executing Commands](executing-commands.md).
 
 ## Persistence of User Preferences
 
-Once you have communicated user preferences to the SDK using the `optIn` command, the SDK will persist the user's preferences to a cookie. The next time the user loads your website in the browser, the SDK will retrieve and use these persisted preferences. There is no need to execute the `optIn` command again, except to communicate a change in the user's preferences, which you may do at any time.
+Once you have communicated user preferences to the SDK using the `optIn` command, the user's preferences will be saved to a cookie. The next time the user loads your website in the browser, the SDK will retrieve and use these persisted preferences. There is no need to execute the `optIn` command again, except to communicate a change in the user's preferences, which you may do at any time.

@@ -18,6 +18,7 @@
 * [Interacting with Multiple Properties](fundamentals/interacting-with-multiple-properties.md)
 * [Rendering Personalization Content](fundamentals/rendering-personalization-content.md)
 * [Supporting Opt-In](fundamentals/supporting-opt-in.md)
+* [Supporting Opt-Out](fundamentals/supporting-opt-out.md)
 * [Supporting In-App Browsers](fundamentals/supporting-in-app-browsers.md)
 
 ## What to Implement
