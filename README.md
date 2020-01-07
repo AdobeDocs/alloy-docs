@@ -1,3 +1,5 @@
+# Documentation has moved to a [new repository](https://git.corp.adobe.com/experience-platform/documentation/tree/master/api-specification/markdown/narrative/edge).
+
 ---
 description: >-
   Learn what Alloy is and how it can be used.
